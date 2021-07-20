@@ -1,0 +1,58 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+.bg-white {
+    background-color: #000 !important;
+}
+
+
+
+body {
+    background: rgb(19, 18, 18);
+    color: #4a4a4a;
+}
+
+
+.card {
+    background-color: #000;
+}
+
+.navbar-light .navbar-brand {
+    color: #4a4a4a;
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #4a4a4a;
+}
+
+.card-header {
+    padding: 0.75rem 1.25rem;
+    margin-bottom: 0;
+    background-color: rgb(175 170 170 / 3%);
+    border-bottom: 1px solid rgb(154 154 154 / 13%);
+}
+
+.navbar-light .navbar-nav .show>.nav-link,
+.navbar-light .navbar-nav .active>.nav-link,
+.navbar-light .navbar-nav .nav-link.show,
+.navbar-light .navbar-nav .nav-link.active {
+    color: #747373;
+}
+
+
+.navbar-light .navbar-brand:hover,
+.navbar-light .navbar-brand:focus {
+    color: #747373;
+}
+
+
+.navbar-light .navbar-nav .nav-link:hover,
+.navbar-light .navbar-nav .nav-link:focus {
+    color: #747373;
+}

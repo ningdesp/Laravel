@@ -1,0 +1,3685 @@
+ideias para o noiagram
+imitar a pagina inicial do insta original
+porem celular em vez de fotos.... tem q ter algo a ver com pó
+ou sujeira de póe na tela... ou entao animaçao dos caras cheirando
+
+sobre a pagina inicial
+precisa ter um mecanismo de busca para encontrar outros usuarios
+configurar parametros de busca e tals
+criar buusca por posts
+storys.. como fazer???
+o que eu fiz tem suporte para videos???
+criar botar de curtir e marcador de curtidas
+marcador de curtida e seguindo e seguidores precisa ser link para lista que mostra quem curtiu segue ou esta seguindo
+tem q tirar o follow de proprio perfil
+
+
+nos posts...tem q ter comentario e curtida certo???
+criar um modelo coments.....e relacionar com posts...
+curtida tem q ser uma pivot table talvez neh?? dai mesma fita de follow...só que diferente
+botao de follow tem q funcionar tbm...ta quebrado.. eh só um link na real...tem q ver q q faz com o vue
+
+deixa pra depois.. vom terminar o curso 
+laravel telescope... depois rever o curso fazendo a rede do santo grau ou melhor... criptomoedas
+
+
+
+
+
+
+depois de acabar esse caraio aki
+tem q ver tomcat
+https://www.youtube.com/watch?v=u_InEBgRVcc
+https://www.youtube.com/watch?v=pzkO2vhNyPc
+https://www.youtube.com/watch?v=01ImXiyQhUU
+https://www.youtube.com/watch?v=MNg1drdIkUQ
+
+vi uma vez alguma coisa.. e nao entendi nada ainda
+
+
+
+--->
+---->instalar composer, npm, node-js, phpunit com apt
+
+
+--->
+---->usar composer pra instalar laravel
+
+composer global require laravel/installer
+
+
+--->
+---->dai sempre da bosta pq tem q editar o .bashrc na ~
+
+export PATH=$PATH:~/.config/composer/vendor/bin
+
+pra poder usar o laravel no terminal
+
+
+--->
+---->dai pra escolher a versao do laravel que voce vai usar é esse comando miraculoso
+
+composer create-project --prefer-dist laravel/laravel blog "5.8"
+
+na hora de criar essa porra aí pode dar pau já de cara
+
+In database.php line 58:
+                                                
+  Undefined class constant 'MYSQL_ATTR_SSL_CA'  
+                                                
+
+Script @php artisan package:discover --ansi handling the post-autoload-dump event returned with error code 1
+
+
+alguma coisa na linha 58 do database
+e pra resolver voce abre a pasta config e comenta com // a linha 58
+
+" PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'), "
+
+
+--->
+----> artisan faz milhares de coisas...... ele eh zica do pantano!!!
+
+-->pra gerar um servidor vc usa o comando
+
+php artisan serve
+
+dai vc clica no link e abre o navegador com o index.php
+
+mas pode ser que dê problemas também, então execute os seguintes comandos no caso de:
+
+"RuntimeException No application encryption key has been specified."
+
+
+php artisan key:generate
+php artisan config:cache
+
+pronto!! apareceu a porra do index.php direitinho agora caraleo!!!!!
+
+
+--->
+---->onde voce encontra algo relacionado aos htmls naquele monte de coisa no projeto???
+
+vá em resources/views e abra o welcome.blade.php
+
+--->
+----> blade é alguma coisa q eu ainda não sei
+
+
+--->
+----> NO ENTANTO ELE FAZ MILAGRE!!!!
+
+Criar sessão de autorizaçao como login e register com apenas um comando!!!!!!
+
+php artisan make:auth
+
+TCHARAM!!!!!
+prontinho!!! ele criar tudo e joga no header da pagina!
+
+
+--->
+---->ele quer mexer nos views pra deixar mais facil quando formor pro laravel de verdade!
+frontend html js vue mais uma porrada de coisa
+
+backend php e laravel mandando em tudo
+
+--->
+----> vamos usar node.js e npm
+
+
+vá no terminal e abra a pasta raiz do projeto
+depois rode o comando 
+
+    npm install
+
+
+quando terminar voce deve compilar antes de usar
+
+    npm run dev
+
+pega tudo q laravel navega e coloca num arquivo que vamos realmente usar
+
+no final ele deve pedir pra voce rodar o comando de novo!!! portando... manda bala
+
+    npm run dev
+
+se nao pedir....FODA-SE
+
+
+com isso voce criou esses arquivos
+
+ DONE  Compiled successfully in 48809ms                                                                         4:25:24 PM
+
+       Asset     Size   Chunks             Chunk Names
+/css/app.css  179 KiB  /js/app  [emitted]  /js/app
+  /js/app.js  1.4 MiB  /js/app  [emitted]  /js/app
+
+  verificando no IDE  vemos ambos arquivos na pasta resource e tbm na pasta public
+
+  vamos apenas editar os arquivos da pasta RESOURCES
+  mexeu no outro... FULL DEO o baguio eh tao pesado q demora pra abrir texto!!!
+
+
+--->
+----> ARRUMANDO MAIS CAGADAS
+
+a fita é q o app.css do public vem com problema......
+
+@charset "UTF-8"; eh uma tag q deve sempre vir no inicio do codigo!! caso contrario dá erro!
+e nesse caso.. ela veio em segundo lugar....
+
+
+continuando!!
+
+
+--->
+---->vamos mexer nas views
+
+agora com tudo propriamente instalado e corrigido
+vamos para views home.blade.php
+
+ela é a home quando vc loga no site, porem nao temos nenhum usuario logado
+
+
+****conceito novo
+migrations..... migrations sao instruçoes q dizem as informaçoes que devem ser gravadas no banco de dados
+
+portanto nao alteraremos o banco de dados diretamente..... mais sim indiretamente através de migrations
+porque ela documenta detalhadamente todas as etapas de tudo q será alterado no banco de dados... e guarda essas informaçoes
+
+isso evita muitos erros.....e melhora introsamento de trabalho numa equipe
+
+vamos usar SQLite
+
+precisaremos criar um arquivo dentro da pasta database chamado
+database.sqlite
+
+importante criar arquivo com o editor de texto VIM para manter compatibilidade de arquivos com windows
+portanto:
+
+    sudo apt-get install vim -y
+
+e bora!!!  (apanhar do vim)
+
+para sair dessa porra digite :wq
+
+agora vamos entender um pouco do arquivo na pasta raiz .env
+
+ele dita as regras do seu enviroment
+logo nas primeiras linhas temos informações APP
+um ambiente local deve estar preconfigurado...
+mas poderia ser staging production ou quantos a equipe precisar
+
+
+na parte DB ... manter apenas o DB_CONNECTION, porém usar sqlite no lugar de mysql
+os outros DB TODOS  devem ser deletados!
+
+
+meu... travei nessa parte do banco
+instalei tudo q tinha de sqlite no vscode
+instalei sqlite phpsqlite3 e mias uma porra de coisa com apt
+
+e nada ainda
+
+parei nos 25min mias ow menos... vou descanar... bejo bejo bejo tchau
+
+
+--->
+---->destravei
+tem um comando ai pra limpar cache
+
+php artisan config:cache
+
+MILAGROSAMENTE a parada arrumou sozinha!!
+
+
+voltando ao video
+
+sobre laravel ainda nao tem nada de interessante acontecendo
+porem ai vai algumas notas
+
+uma pasta svg e outra imgx foram criadas dentro da public
+na svg tem o simbolo do noiagram e na imgx a foto do ning desp pq o link do insta nao funcionou
+
+no mais ele tem feito alguma outras alteraçoes... 
+como adicionar fonts do google no app.scss
+e referenciá-la no _variables.scss
+no variables alem de referenciar a nova fonte tbm alteramos o background
+em geral ele joga um style dentro da tag para alterar css de maneira rapida
+as vezes joga um class e taca paddington
+na class tambem usa uma coisa muito importante o d-flex
+mas essas sao praticas erradas
+tem toda uma uma tal de class="row" que dispoe os intens em linha....
+
+depois criar 3 divs com 3 fotos copiadas do insta pra pasta imgx
+colocamos uma class w-100 nas tags img
+
+aparentemente agora vamos voltar pra brincar de laravel!!!
+
+abrimos a pagina register.blade.php dentro da pasta auth nas views
+lá dentro copiamos adiv do campo email e com ctrl+D selecionamos tudo q era email e colocamos username
+no mapo de texto tambem colocamos Username
+agr vamos mexer com um tal de required
+no campo novo do usernamne... fui no final do input e encontrei o required autocomplete.....
+apaguei o required.... e ele nao pedia o compo obrigatorio na hora de preencher os formularios
+
+agr vamos conhecer a pasta app da raiz....
+la dentro tem http
+e dentro dela tem controllers...
+os controllers sao responsaveis por manipular os dados
+coletar dados... transformar dados...
+lá tem outra pasta auth criada com aquele comando make:auth ....o baguio eh magico e foda mermo!!!
+
+enfim... na RegisterController.php eu procurei
+
+ protected function validator(array $data)
+    {
+        return Validator::make($data, [
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'username' => ['required', 'string', 'max:20', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+        ]);
+    }
+
+    e veja q foi adicionada a linha pra username!!!! alteramos o max de caracteres e tiramos a paradinha email
+    na pasta database... tem migrations.. e lah soh tinha 2 arquivos....
+    no create users table
+
+      public function up()
+    {
+        Schema::create('users', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->string('name');
+            $table->string('email')->unique();
+            $table->string('username')->unique();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->string('password');
+            $table->rememberToken();
+            $table->timestamps();
+        });
+    }
+
+    copiamos a linha do email e alteramos pra usernamo tbm
+
+
+    criamos um usuario.... e pá!!
+    tudo certo no front end!!
+
+
+
+    dai o cara chamou um tal de php artisan tinker
+    esse comando te mostra a ionteraçao com o seu programa de verdade!!
+    dentro do prompt vc estara emulando php
+    tem um comando 
+    User::all();
+
+    entao dando esse comando no terminal vc ve os usuarios criados
+    e la nao tem campo nenhum mencionando username...
+    portanto deve estar faltando alguma coisa!!
+
+    dai um exit sai da parada
+
+    agr vc tem q dar um comando novo no terminal
+
+    php artisan migrate:fresh
+
+    isso joga as configuraçoes de tabelas fora e migra tudo de novo
+    porem nessa ai perdeu tudo q vc jogou de info lá neh
+
+
+
+
+    estamos em 55 minutos mais ow menos!!
+
+
+    mas tem mais coisa pra fazer ainda pra ajeitar esse negocio de Username!
+
+
+dentro de app na raiz.... tem User.php
+
+ protected $fillable = [
+        'name', 'email', 'username', 'password',
+    ];
+
+
+dai mesma historia.. tem q mandar um username ali tbm....
+
+
+user.php eh um modelo ...enfim.. isso eh uma camada extra de proteçao q o laravel dá para q nada malicioso tente inserir dados onde não deveriam para poder invadir o sistema
+
+
+pronto.. agr sim.. deu certo!! mandamos uma variavel nova num campo novo pro banco de dados.. tudo certinho!!!
+parabens!!
+
+
+agr vamos alterar nossa view e usar esse username
+
+no app.blade.php dentro de resouces/view/layouts
+
+<a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ Auth::user()->username }} <span class="caret"></span>
+                                </a>
+
+
+                                na parte {{ Auth::user()->username }} estavamos usando name... e mudamos para username
+                  
+
+
+agr para mexer na home... ele explicou umas fitas sobre controllers
+
+em app/controllers tem HomeControler.... e la embaixo voce acha a funçao index()
+ela manda a pagina que deve ser aberta....
+note q está escrito apenas home
+e nao home.blade.php..... o laravel eh inteligente o suficiente pra entender isso e puxar a pagina certa
+
+fora isso temos a pasta routes e lah um arquivo web.php
+
+ela eh quem puxa a função homecontroller.... 
+
+agr vamos criar um controller nosso... pois na HomeController tem o seguinte codigo
+  public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
+e aquilo faz com que as pessoas precisem estar logadas para ver paginas de profile....
+o q eh permitido no instagtram.. (pelo menos em quem permite eu acho)
+
+mas agora vamos criar nosso proprio controller
+no terminal tem o comando
+
+php artisan make:controller
+
+*** curiosidade
+
+help
+
+php artisan help make:controller
+
+assim ele mostra um manual
+
+e explica como funciona algumas regras....
+o que estiver entre [] nao eh necessario 
+e o que estiver entre <> precisa ser informado
+
+entao criamos um assim
+
+php artisan make:controller ProfilesController
+
+lá nos copiamos a funçao do final de Home controller e ignoramos a funçao construct()
+q pedir pra estar logado para ver a /home
+
+dai entao fomos na /routes/web.php e mudamos o controller q estava sendo pedido....
+o metodo @index no final tem q bater com o a função index() dentro de publiccontroller
+
+agora ele nao quer q o endereço seja /home
+
+e sim /profile/ alguma coisa
+
+ele foi em routes web.php
+
+Route::get('/profile/{user}', 'ProfilesController@index')->name('profile.show');
+
+alteramos essa linha assim..... {} quer dizer que vamos usar uma variavel
+o .show eh uma parada do laravel
+
+ele buscou no google porlaravel restful controllers
+e na primeira pagina jah tinha
+
+HTTP Controllers - laravel - The PHP tarararararar
+
+nessa pagina descendo um poquinho
+ele mostra uma convençao de codigos predeterminados...
+q tem alguma açaõ predeterminada para ser aplicada a alguma url verb and action
+
+e eh bom usar essa convençao. vai simplificar tudo.. fazer o codigo mais leve e tudo!!
+
+busca lah e aprende
+
+
+dai ele ainda meteu no Profiles controller dentro da index($user)
+
+e dentro da função madou colocar um 
+dd($user);
+
+para dar um echo no que for user.. e vai parar toda a operação
+
+
+testando pela url.... tudo q vc colocar depois de profile.... aparece na tela..
+entao a variavel user ta funcionando...
+o que precisamos eh colocar o valor que queremos de dentro da database
+
+na web.php
+
+
+use App\User;
+use Illuminate\Http\Request;
+
+class ProfilesController extends Controller
+{
+    public function index($user)
+    {
+        dd(User::find($user));
+
+        return view('home');
+    }
+}
+
+
+colocamos o use App/User; para que jah esteja indereçado corretamente ao user.php que eh uma pagina carregada individualmente para cada usuario.. com suas informaçoes...
+
+dai em baixo.. a funcçao
+User::find($user);
+
+sem o use App/User
+
+deveria ser 
+/App/User::find($user);
+
+mas melhor configurar no começo do codigo e digitar menos!!!
+
+com o DD a gente joga a info na tela... e a operação para
+
+mas podemos ver que nao carregamos usuario nenhum quando digitamos coisas aleatorias
+
+porem.. ao digitar 1.... apareceu nosso primeiro usuario no banco de dados!!
+
+
+entao vamos deixar o web.php assim
+
+
+use App\User;
+use Illuminate\Http\Request;
+
+class ProfilesController extends Controller
+{
+    public function index($user)
+    {
+        $user = User::find($user);
+
+        return view('home', [
+            'user' => $user,
+        ]);
+    }
+}
+
+
+dentro do return a gente alterou algumas coisas
+
+depois de home colocamos entr '' o q será alguea $ dentro da nossa pagina home apenas
+
+
+desse jeito criamos uma variavel.. q pega o usuario do endereço e poderemos jogalo no codigo da pagina
+
+
+se em php voce usava a tag <?=$user?> para fazer a fita de usar a variavel para carregar um valor...
+
+no laravael tem um jeito mais facill
+
+eles chamos de mustache tag!!! a tag no bigode!! ahahah
+
+{{ $user->username }}
+
+
+a tag do mustache eh usada para mandar dados para nossas views!!
+
+mvc
+
+model views controller
+
+views sao as paginas
+
+controllers sao essas paradas q vc ta aprendendo a mexer
+
+
+models eu nem lembro se eh isso mesmo....
+mas tiha algo q era um modelo ai se pá hein!!!
+
+lembrei!!!
+
+user.php dentro de /App era um modelo!!
+
+
+
+
+pronto!!! ta legal!! a bunito e ta e tals!!!
+
+1:10:21 de curso!!
+20:11 da notche!!
+
+
+agr vamos criar alguns modelos....
+vamos criar algumas tabelas de Profiles
+
+
+vamos começar.. modelos do zero!!
+
+vamos aprender!!!
+
+voltamos ao terminal...
+deve ser algo parecido com os controllers
+
+ele da um help no comando
+
+php artisan help make:model
+
+Eloquent é a palavra que o laravel usa a database layer do framework
+
+resumindo é a implementaçao q o laravel usa por tras das cortinas para fetch queries e coisas do tipo
+
+e eh uma fita bem poderosa.... que voce pode escrever em mysql sqlite postgress.... ou qualquer fita
+
+mas vc estara escrevendo sempre o mesmo codigo
+
+ou seja.... seu modelo eloquent eh 'agnostico de database' ... ou seja... vai dar certo com qualquer uma que voce usar
+
+vamos ver umas opçoes
+
+-m ja cria os migrations para mandar tudo pro banco de dados depois....
+o q eh a maior mao na roda!!1 athe agora nem digitei codigo nenhum.. e to com maior pagina fodona!!!
+
+dai eu criei o modelocom nome errado.... sorte q eu nao tinha migrado nada ainda....
+dai alterei o nome errado nos arquivos....
+dai descobri tbm q seria deletar o modelo criado errado na pasta app
+e tambem deletar a migration criada na pasta database/migrations
+
+dai editamos a migration
+
+ public function up()
+    {
+        Schema::create('profiles', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id');   isso implementa um id pra cada profile
+            $table->string('title')->nullable();  nullable diz q nao precisa ter valor
+            $table->text('description')->nullable();  afinal qunado o usuario cria a conta
+            $table->string('url')->nullable();       ele nao preenche esses campos de primeira
+            $table->timestamps();
+
+            $table->index('user_id');   isso é pra melhor procurar mais rapido os queries(perguntas para o banco de dados)
+        });
+    }
+
+
+ok... sobre isso foi feito na função up
+
+ele mostra  afunçao down... logo abaixo...
+uma eh pra colocar dados no banco
+
+outra é pra deletar...
+
+
+dai fizemos migrate....e ele fez as tabelas no banco
+
+no Profile.php
+
+criamos nesse modelo algo assim
+
+public function user()
+        {
+            return $this->belongsTo(User::class);
+        }
+
+
+agora vamos fazer alguams mudanças seguinto uma convençao.... pra funcionar tudo certinho
+tem como alterar tudo... mas vamos ver o q consigo entender... q eh comlicado
+
+no create profiles table
+
+colocamos uma linha q tem unsignedBigInteger('user_id')  isso bate com nosso modelo User.php
+onde tem uma classe criada como User  ... tudo no singular
+e no nosso Profile.php estamos referenciando a classe User do modelo User.php
+e esse metodo(achei q era função) criado no profiles tambem é chamado de user
+
+essa é a convençao pra nao ficar fazendo alteraçoes estranhas....
+
+as vezes é necessario sofrer um pouco...
+
+
+dai vc procura um arquivo que chama HasRelationships.php
+
+la tem a public function belongsTo($related, $foreignKey = null, $ownerKey = null, $relation = null)
+
+dai tem q alterar algo nessa foreignKey ai.... mas nao entendi direito.... melhor ver depois mias sobre isso
+
+
+
+
+em User.php adicionamos no final esse codigo ai
+
+public function profile()
+        {
+            return $this->hasOne(Profile::class);
+        }
+
+
+ele explica algo sobre o endereçamento dentro dos models.....
+
+nao precisa colocar nada antes de profile.... pq os models tem no começo do codigo
+
+namespace App;
+
+que diz q eles tao lah.... e a mesma coisa acontece no Profiles
+
+q tbm nao precisa colocar nada antes de User::class
+
+agr vamos adicionas algumas paradas manualmente no tinker
+
+vamos ao terminal e bola pra frente
+
+no tinker ele fz o seguinte
+
+$profile = new \App\Profile()
+e criou um profile
+
+$profile->title = 'Cool Title';
+e adicionou um title
+
+$profile->description = 'Description';
+e adicionou description
+
+$profile->user_id = 1;
+e atribuiu o id 1 pro profile
+
+$profile->save();
+e dai ele vai salvar a parada
+
+$profile->user
+
+assim ele linkou as paradas... chama o user pelo profile.....
+note  vem um App/User logo em cima
+
+$profile
+joga na tela o profile inteiro... com o user dentro
+
+note q no inicio tem um App/Profile
+
+
+e se for ao contrario...
+
+$user = App\User::find(1);
+ele da o user com App/User
+
+$user->profile
+e ele da o profile.... com App/Profile
+
+
+isso foi pra ensinar mais ow menos como funciona essa logica
+
+
+agr vamos mexer com mais codigos!!!
+
+na home.blade.php
+
+fomos nas divs da descriçao do perfil trodivcamos as strings por tags do bigode!!!
+ 
+na primeira 
+{{ $user->profile->title }}
+
+na segunda div
+{{ $user->profile->description }}
+
+na terceira div da url q eu nao tinha criado
+{{ $user->profile->url }}
+
+como a url estava null... nao aparece nada...
+ele ensina um macete pra valores nulos..
+
+{{ $user->profile->url ?? 'N/A' }}   ?? significa 'ou' ....e n/a eh uma string q ele vai mostrar
+
+mas isso eh pra outro caso.. vamos deixar sem por enquanto!!
+
+voltando ao tinker...
+
+para selecionar um profile ou user
+
+$user = App\User::find(1);
+$profile = App\Profile::find(1);
+
+dai ele foi no user... e inseriu uma url
+$user->profile->url = 'google.com';
+
+se vc salvar... nao vai dar certo.. pq va salvar o a relaçao do user... mas nao vai salvar o profile...
+dai teria q entrar no profile.. pra salvar...
+
+ele ensina a fita diferente
+
+em vez de 
+
+$user->save();   use outro codigo
+
+$user->push();
+
+e isso manda todas as minhas alteraçoes pro banco de dados!!
+
+isso dá certo no user... pq dele eh que vem todas as outras tabelas dependendo dele...
+
+tipow.. vai no master.. e manda fazer com geral!!
+
+
+agora vamos no endereço do navegador.... e em vez de profile/1 ... vamos colocar o numero 2
+
+
+e dai vai dar pau geral.... em vez de aparecer usuario nao encontrado.. ou qualquer pagina com erro 404
+
+... vamos dar um jeito nisso agr!!
+
+
+1:28:40 de video
+
+22:14 da notche
+
+caraio...18min d video em 2h... apa poota q pariu!!
+
+
+para fazer as alteraçoes do erro 404 foi facil
+
+no ProfilesController
+
+alteramos o find
+
+ficou assim.... findOrFail
+
+e ele jah mostra o erro 404 sozinho!!!
+
+agr vamos trabalahr mais relationships.... porem vai ser de relaçao de um apra muitos...
+tipow.. de um usuario para varios posts
+
+entao vamos no terminal...
+
+php artisan make:model Posts -m
+
+
+agora vamos em /database/migrations e editamos o create posts
+
+public function up()
+    {
+        Schema::create('posts', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id'); pra relacionar com id
+            $table->string('caption');   legenda da foto
+            $table->string('image'); foto
+            $table->timestamps();
+
+            $table->index('user_id'); pra facilitar queries
+        });
+    }
+    
+deixamos assim
+
+agr vamos migrar pro banco de dados
+
+php artisan migrate
+
+pronto... tabelas criadas... agr vamos amarrar isso a nivel de laravel
+
+agora vamos no modelo User.php
+
+public function posts()
+        {
+            return $this->hasMany(Post::class);
+        }
+    
+    
+    public function profile()
+        {
+            return $this->hasOne(Profile::class);
+        }
+
+
+        note q adicionamos a funçao posts()  ----> está no plurar!!!
+
+agr vamos no nosso novo modelo Post.php
+
+la adicionamos esse codigo
+
+public function user()
+        {
+            return $this->belongsTo(User:class);
+        }
+
+
+agr antes de abrir o tinker e amarrar tudo...
+
+vamos criar um botao pra colocar novos posts.... porem tem q ser quando estiver logado pra fazer isso!!!
+
+entao vamos ver como faz
+
+ele vai no insta original... e da uma olhada em como fica o link de um post......
+
+seria algo tipow.... instagram.com/p/algumaIdUnica/mais umas parada ai sem importancia agora
+
+
+entao vamos fazer uma rota /p/create
+
+voltando naquela pagina da web q mostava os HTTP Controllers
+
+temos o metodo .create
+
+
+vamos mexer com rotas e controllers novamente agora
+
+
+***** praticidade no role
+procure no seu IDE como achar pesquisar por files... 
+eh muito mais rapido do que procurar navegando pelos diretorios..
+
+aki no vscode eh simples.....
+
+Ctrl + T abre a busca... vc digita alguma parte do nome do arquivo...e seleciona q ele abre.....
+o cara diz q nem usa o navegador de pastas aberto no lado esquerdo quando ele trabalha....
+isso da mais espaço para a visualizaçao do codigo!!
+isso te faz navegar mais rapido e ser mais produtivo
+
+na cagada descobri algo do linux....
+apertar a tecla windows e as setas mexem com o maximizar da janela....
+win + Right joga a janela na metade direita
+win + Left joga a janela na metade esquerda
+win + Up maximiza a janela
+win + Down minimiza a janela
+
+
+ok... vamos em /routes e no web.php vamos colocar mais uma rota
+
+Route::get('/p', 'PostsController@create');
+
+ele ainda nao quis atribuir um nome... como na rota q estava abaivo do profile....
+mas poderiamos.....
+
+
+logo apos isso... pra nos organizarmos melhor.... 
+criamos uma pasta chamada 'posts' dentro de /resouces/views
+
+pra lah vamos mandar todas nossas postagens!!
+
+agora no PostsController
+
+vamos adicionar
+
+public function create()
+        {
+            return view('posts.create'); ---> no lugar de . pode ser /
+        }
+
+ele menciona algo sobre o nome do .create manter o mesmo padrao da funcao create() por conta daquela convenção q voce nao entendeu direitinho
+tambem teve algo de posts ser op mesmo nome do controlador... PostsController
+pq dai tudo vai se achar facil.. e nao vai ficar sofrendo com aquelas alteraçoes bizarras e sofridas lah
+
+enfim... porem o laravel chamava de home algo q estamos chamando de profile..
+
+entao criamos mais uma pasta dentro de views .... chama profiles
+mandamos o home.blade.php pra dentro dela
+e alteramos o nome para 
+index.blade.php
+
+index porque é o metodo q usamos nos Controllers
+
+no ProfilesController vode tem q alterar 'home' para 'profile.index'
+
+se nao cagar nas paradas...deve ter dado tudo certo!
+
+agora vamos lah.... duplicamos o index.blade.php
+renomeamos para create.blade.php
+e mandamos para a pasta posts
+depois apagamos tudo q tem no arquivo..e deixamos apenas
+
+@extends('layouts.app')
+
+@section('content')
+<div class="container">
+            
+</div>
+@endsection
+
+
+
+fomos no navegador... f5 na pagina... 
+abrimos um endereço 127.0.0.1:8000/p/
+
+a o link funcionou.. porem estava vazio.... assim como deixamos o codigo da pagina
+
+apos isso... voltamos no web.php dentro de routes....
+lá nos completamos a route q fizemos por ultimo...
+
+
+Route::get('/p/create', 'PostsController@create');
+
+/create foi a alteraçao
+
+
+mais uma vez ele fala sobre as conençoes
+e como elas devem sguir esse padraopara manter sua aplicaçao limpa leve e mais facil de escrever e alterar
+vode precisa sacar o que esta aocntecendo bazezinho...
+o q esta ligando no q????
+
+
+agora vamos criar o create method now
+
+fomos no register.blade.php
+copiamos a div referente ao name
+
+jogamos na create.blade.php
+e fizemos algumas alteraçoes...
+
+antes colocamos uma tag form
+entao criamos
+<div class="row">
+            <div class="col-8 offset-2">
+
+            porem usamos atalhos do vscode
+            .row ja cria a primeira div
+            .col-8.offset-2 cria a segunda
+        isso eh fita de design... coisas de alinhamento e organizaçao pra colunas
+        coisa q vc nao entende ainda... mas o laravel tem algo a ver com 12
+        se nao for laravel. tem haver com blade..
+        tem 12 colunas ou algo assim.... sei lah a relaçao
+
+depois colamos o conteudo copiado de register
+entao fizemos as seguintes alteraçoes
+
+<form action="">
+        <div class="row">
+            <div class="col-8 offset-2">
+                <div class="form-group row">
+                    <label for="caption" class="col-md-4 col-form-label ">Post Caption</label>
+            
+                    <input id="caption" 
+                           type="text" 
+                           class="form-control @error('caption') is-invalid @enderror" 
+                           caption="caption" 
+                           value="{{ old('caption') }}" 
+                           required autocomplete="caption" autofocus>
+
+                    @error('caption')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+            </div>
+        </div>
+    </form>
+
+uma div foi deletada..... 
+names foram alterados para caption
+o texto virou post caption e teve sua configuraçao para a direita excluida
+
+e eh isso eu acho
+
+
+alteramos tbm o metodo
+
+<form action="/p" enctype="multipart/form-data" method="post">
+
+e tambem colocamos um campo pra addicionar o arquivo...
+e um botao pra mandar a foto
+
+<div class="row">
+                    <label for="image" class="col-md-4 col-form-label ">Post Image</label>
+                    
+                    <input type="file", class="form-control-file", id="image" name="image">
+
+                    @error('image')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+
+                <div class="row pt-4">
+                    <button class="btn btn-primary">Add New Post</button>
+                </div>
+
+
+la fitita és lo seguintito
+
+vc faz isso e da um tal de erro 419....
+
+vamos ver do que se trata
+
+ele diz q eh um erro de csrf
+
+isso ajuda o laravel a limitar quem pode postar em nossos formularios
+ porque se nao .... alguem vem dando um curl em algum endpoint como akela / do p
+ e dai o cara vem e cria o post q ele quiser.... sem nem entrar no site
+
+ e nao queremos isso por nao teremos controle do que as pessoas estao inserindo no banco de dados...
+
+assim nos devemos limitar quem pode postar ou nao...
+laravel fez isso com uma key gigante pra cada formulario
+e ele ve ...isso veio desse servidor??? se sim.. blz..
+se nao.... entao erro 419 bebê
+
+agora podemos postar as coisas
+porem deu um xabuu ai
+o caption nao estava aparecendo
+
+voltando no create.blade
+
+<input id="caption" 
+                           type="text" 
+                           class="form-control @error('caption') is-invalid @enderror" 
+              ---->        name="caption"                           
+                           value="{{ old('caption') }}" 
+                           autocomplete="caption" autofocus>
+
+
+deletamos o caption="caption"
+e adicionamos o name="caption
+
+isso arrumou o caption na hora de postar
+
+porem agora vamos mexer com validaçao
+
+no PostsController a funçao store() tem q ficar assim
+
+public function store()
+        {
+            $data = request()->validate([
+                'caption' => 'required',
+                'image' => 'required',
+            ]);
+            dd(request()->all());
+        }
+
+o que obriga com q tudo seja validado e mostre mensagens de erro caso a treta trete
+
+mas tbm deu xabuu
+a imagem nao estava dando mensagem de erro
+
+dai no create.blade
+
+fomos no erro da image e deletamos as tags span
+
+ok.. tudo voltando a funcionar
+e lah vem ele com mais curiosidade
+
+na hora de escolher um arquivo... podemos mandar qualquer coisa...
+temos q restringir isso para usar apenas imagens
+
+naquele site do HTTP Controllersele sobe na busca e procura 'validatioon rules'
+
+de lah ele procura os termos.... e acha a regra para image
+
+entao no PostsController a funçao store() fica assim
+
+public function store()
+        {
+            $data = request()->validate([
+                'caption' => 'required',
+                'image' => 'required|image',     -------> aki voce usa o 'pipe' que eh | isso ai
+            ]);
+
+porem tbm podia ser assim
+
+public function store()
+        {
+            $data = request()->validate([
+                'caption' => 'required',
+                'image' => ['required', 'image'],  -----> ow vc faz uma array
+            ]);
+
+tcharammm!!!!
+
+deu tudo certo
+
+agr a pagina dos posts estao configuradas corretamente
+
+
+se lembrarmos do tinker..
+fizemos algo assim
+
+            $post = new \App\Post();
+
+            $post->caption = $data['caption'];
+            $post->save();
+
+e poderiamos fazer isso no codigo tbm
+
+porem existem maneiras mais facil... com o metodo create
+
+vamos aprender
+
+
+poderia ser assim tbm
+
+            \App\Post::create([
+                'caption' => $data['caption'],
+                'image' => $data['image'],
+            ]);
+
+
+
+mas.... eh melhor assim
+            \App\Post::create($data);
+
+
+
+******* curiosidade
+
+public function store()
+        {
+            $data = request()->validate([
+                'another' => '',       ------->caso seu formulario tenha algum campo sem regras,
+                'caption' => 'required',        ou um campo q nao seja obrigatorio, voce pode fazer
+                'image' => 'required|image',    desse jeito... e o laravel entenderá q...fodasse esse campo
+            ]);                                 e vai pegar a info do jeito q tiver.....se tiver!!
+
+            \App\Post::create($data);
+            
+            dd(request()->all());
+        }
+
+
+        no entando nao usaremos isso aqui!
+
+
+        oh.... xau na area como sempre hein
+        o esse esquema de require image.... nao suporta jpg
+
+        dai tem um outro que eh mimes:jpg
+        nele voce pode adicionar varios tipow... porem vamos manter assim por hora....
+
+        dai ele fez mais algumas coisas.... 
+        postou e deu erro...
+
+        o erro da vez eh o seguinte
+
+        fillable property of mass assign issue
+
+        esse erro jah deu.... tivemos q ir no model e falar q era ok pro laravel me liberar pra fazer o q eu quero
+        o laravel protege vc porque vc pode request all e alguem vai no view sorce no crhome e troca pra dados arbitrarios
+        a pessoa pode inventar seus proprios campos para preencher e inserir codigos no seu banco de dados...
+
+        como a gente tem nomeado tudo e separado cerinho pra ninguem fazer bagunça.... dai podemos desligar essa proteçao
+
+        
+        em App abra Post.php
+
+         em cima da funçao user() coloque o codigo
+
+         protected $guarded = [];
+
+
+         dahora!! assim vc manda a proteçao do laravel cagar.... 
+         e assume q vai se virar e controlar as informaçoes coletadas
+
+
+         mas dai vai dar mais treta!!
+
+         esse eh um integrity constrict validation error
+
+         ma que porra eh essa....
+         quando criamos nossa tabela post
+         a gente criou uma unsignedBigInteger para user_id
+         porem aki nao estamos trabalhando com ela....
+         esa user id seria do cara logado
+         agr a gente nem tava logado...
+
+         a soluçao eh salvar pelo relationships
+
+         como a gente pega um usuario authenticado??
+
+         no PostsController abaixo dos validades.... vamos usar a função auth()
+
+
+         auth()->user()->posts()->create($data);
+
+         isso quer dizer assim
+         auth.. me de aquele usuario autenticado e desse user.. eu posso chamar os posts
+
+         pq no model user.php ele tem o role do posts...e ele tem hasMany
+
+         mas agora tem q ter parenteses()
+
+         e agr a gente fala..posts.... com a seta (arrow function) vc vai lah e cria com a funçao create
+
+         ou seja... ele pega um usuario autenticado...vai nos posts dele...e cria o q o cara pediu pra postar
+
+         e no bg o laravel jah gerencia essa parada d user_id.... porque ele sabe das relaçoes disso
+
+         depois ele ainda dele a linha \App\Post::create($data);
+
+         mas dai vai falahr de novo!!
+         dessa vez o erro eh pq vc nao esta logado!!
+
+         e agr sim.. nos logamos.... deu erro 404 da home pq mudamos a rota e nao arrumaos ainda
+
+         vamos no endereço do navegador... colocamos /p/create
+
+         agr ao postar tudo certinho.... as infos vao para nosso bando de dados!!
+
+         agr vamos no tinker confirmar...
+
+         Post::all(); da o seguinte resultado
+
+         Illuminate\Database\Eloquent\Collection {#3914
+     all: [
+       App\Post {#3875
+         id: "1",
+         user_id: "1",
+         caption: "gregfdgf",
+         image: "/tmp/phpxjo9AG",
+         created_at: "2021-07-12 05:16:44",
+         updated_at: "2021-07-12 05:16:44",
+       },
+     ],
+   }
+
+   note que o user_id aparecer como 1... mesmo sem termos colocado nada no PostsController
+   porque fizemos o lance da relaçao um com o outro usando 
+   auth()
+
+   agr tudo funcionou ceritnho...pq só quem pode postar é quem está logado
+   e a pessoa só pode postar no seu profile
+
+
+   no entanto... tem algo errado
+   quem nao está logado... nao deveria ver a pagina de Post
+
+   entao vamos arrumar isso...
+
+   no PostsController vamos adicionar uma funçao em cima das outras...
+
+   public function __construct()
+        {
+            $this->middleware('auth');
+        }
+
+agr tudo abaixo disso vai ter q ser logado...se nao nao vai!!
+vai require authorization pra rolar!!
+
+a aprtir de agr...quem tentar acessar a pagina /p/create...
+vai ser redirecionado para a pagina de login....
+caso nao esteja logado!!
+
+
+porem agora olhando no tinker... vemos que nao lidamos com a imagem na maneira correta
+estamo colocando no lugar erradoprecisamos uploadear a imagem...
+temos q redimensionar e colocar num tamanho correto
+pois o insta na real eh quadrado!
+
+com esse codigo digitado no PostsController logo acima do auth()
+
+dd(request('image')->store('uploads', 'public'));
+
+o laravel salva as paradas dentro da /storage/app/public/uploads
+
+porem.... quem navega no site nao acessa nada fora da pasta /public
+
+entao temos q dar um php artisan algo ai.....
+e ele vai linkar as coisas e liberar pra apaecer no public.....
+esse comando precisa ser digitado apenas umas vez no prejeto todo!!
+entao seliga ai!!
+
+
+php artisan storage:link
+
+ele cria um link simbolico da public/storage com storage/app/public
+
+e pronto... com o link q ele dá.... vc adiciona storage na frente...
+considerando q o navegador fica dentro da /public...e pronto..
+vc tem acesso
+
+
+voltando no PostsController
+
+
+$imagePath = request('image')->store('uploads', 'public');   ----->> isso aqui era um dd
+            
+            auth()->user()->posts()->create([    ---->aqui tiha $data, mas agora caption vai prum canto
+                'caption' => $data['caption'],     e a imagem vai pra outro....     
+                'image' => $imagePath,
+            ]);             ----->>o imagepath saiu de um dd da linha 1265 e dava o endereço da foto
+
+            
+
+            return redirect('/profile/' . auth()->user()->id); ------isso aqui era um dd(request()->all());
+                                                                  mas nem lembro pq....
+
+                  o que isso faz agora.. eh mandar o usuario pro seu profile pegando seu id...
+                  isso só da pra fazer pq ele esta autenticado.... tem uma funçao middleware lah em cima impedindo qualquer coisa de acontecer sem estar logado
+
+
+            a parade tem q ficar assim
+
+
+agr da certinho... posta... volta pro profile e boa...
+
+agora vamos trabalhar nossos views direitinho.. pros posts aparecerem na pagina do profile
+
+
+e ta... lah.. meio pequeno.. unsbugados... vamo ver certinho
+
+primeiro vamos limpar os posts
+
+php artisan tinker
+
+Post::truncate();
+
+isso deleta tudo dos posts no banco
+
+dai postei umas imagens diferentes e boa....
+a ordem q ele dispoe... noa eh a de linha do tempo...e sim por ordem de postagem
+
+vamos arrumar isso e o tamanho das imagens para ficar quadradas como no insta
+
+no User.php
+
+deixe a linha assim
+
+return $this->hasMany(Post::class)->orderBy('created_at', 'DESC');
+                              ---->daki pra lah vc pede pra ordenar por uma variavel q nem sabia q existia
+                              e como padrao eh ascendente.... voce pede pra ser 'DESC'endente
+
+                              agora sobre Create post table....
+                              sempre tinha aquele tal de timestamps() certo???
+                              ele mostra indo na funçao dele.. q ele cria a tablea created_at e updated_at
+                              ambas nulleable... porem ele sempre manda a ordem automaticamente
+                              entao por isso podemos assumir q tem essa tabela created_at para ordenar algo
+
+
+                    eh isso!! rebentou!!
+
+
+
+agora podemos arrumar o contador dos posts....antes colocamos manualmente apenas para criar o design da pagina
+
+no index.blade.php
+
+<div class="d-flex">
+                <div class="pr-5"><strong>{{ $user->posts->count() }}</strong> posts</div>
+                <div class="pr-5"><strong>23k</strong> followers</div>
+                <div class="pr-5"><strong>212</strong> following</div>
+            </div>
+
+            colocamos uma tag do bigode...pedindo a funçao count para os posts do user
+
+            e zariguidum!! vai postando e vai aumentando
+
+agora vamos arumar um espainho entre as fotos... q nao ta bom nao tiozin...
+
+@foreach($user->posts as $post)     ------>vacilei de nao escrever na hora certa.... mas eh algo assim q faz
+                                    os posts aparecerem esse tal de foreach ai...
+            <div class="col-4 pb-4">
+                <img src="/storage/{{ $post->image }}" class="w-100">  essa parte da tag do bigode tbm nao lembro
+            </div>
+
+            @endforeach
+
+
+            nesse pedaço ai.... só colocamos o pb-4 mesmo... e ficou bom
+
+
+  agora vamos fazer tudo ficar no seu quadrado
+
+  tem que ir lah no composer baixar uma fita
+
+  eh uma biblioteca de imagens que nos permite resize and fit nos quadrados facinho
+
+  composer require intervention/image
+
+
+o composer baixa as parada certinho.... jah linka com o laravel na moral..e zas zas zas
+antigamente tinha q ir lah e avisar o laravel e baixou o role no composer.... mas agr ta nota 10
+
+
+use Intervention\Image\Facades\Image;
+
+verifique se essa linha apareceu lah em cima no PostsController
+
+se nao.. coloca ela embaixo do outro use
+
+
+
+dai debaixo do $imagePath ...vc coloca essa linha
+
+
+$image = Image::make(public_path("storage/{$imagePath}"))->fit(1200, 1200);
+------->>esse Image vem daquela linha que adicionamos...e permite manipular a imagem
+Public_path eh um helper....dai nele ve manda o endereço da imagem
+dai usando o fit.. vc nao redimensiona a imagem original...
+ele só corta qualquer excesso.... ou entao colocar centralizadinho do jeito que der certinho
+
+depois chama o save metod....e zas
+
+$image->save();
+
+deu xabu..... por conta desse role de Image ai....
+
+precisei instalar um tal de 
+
+sudo apt-get install php7.4-gd -y
+
+
+e dai reiniciei o apache....
+deu tudo certinho
+bola pra frente
+
+postei mias fotos... e agora elas todas se enfiam num quadrado predeterminado.. de infiando lah dentro certinho
+
+agora vamos arrumar os links desse paranaue aki.... quero clicar no post e ver a foto porra
+
+
+no index.blade.php
+
+@foreach($user->posts as $post)
+
+            <div class="col-4 pb-4">
+                <a href="/p/{{ $post->id }}">
+                <img src="/storage/{{ $post->image }}" class="w-100">
+                </a>
+            </div>
+
+            @endforeach
+
+            esse for eache... faz a magica e tals... e gera os posts... com as tags do bigode certinhas..
+            no caso da imagem utilizando o storage:link e arrumando o endereço
+
+
+            bom.... agr ele foi lah criar a view dos posts..... fez umas macumbaria lah
+            no postos controller e dai no final meeu um dd($post)
+            
+            dai aparecia o id do post.... isso ra um sucesso pra ele....
+
+            ish... teve mais coisa...
+            fez aquele baguio de HTTP Controllere mandou ver um metodo show
+
+            teve q colocar uma rota nova.... com aquela variavel la {}....dai no @ depois do controller utilizado.
+            colocou @show.....teve create... teve
+
+            e tudo isso teve q se manter com mesmo nome... pra ele sair linkando tudo....
+            no caso era post.....as vezes posts... as vezes () no final... nao lembro agr... sobe e procura de novo
+
+            trouxa!
+
+            dai com isso tudo ai.... ele mostrou q no profiles controller
+
+            a gente fectchou o usuario manualmente com o comando
+
+            public function index($user)
+    {
+        $user = User::findOrFail($user);
+
+        return view('profiles.index', [
+            'user' => $user,
+        ]);
+    }
+
+
+    dai ele agr ensina outro jeito.. mais automatico q o laravel faz...
+    assim vc entende a logica... o q tem q fazer.. mas depois ele vai simplificando quando passa de novo
+
+    dai a fita eh.... no PostsController
+
+    deixou assim no final
+
+    public function show(\App\Post $post)
+    {
+        dd($post);
+    }
+}
+so de colocar \app\post ...ele jah manja q q vc quer....s em vez de mandar só a id do post..
+ele manda logo o post do banco de dados....
+
+
+esse recurso se         chama ROUTE MODEL BINDING
+
+se no web.php a variavel do {} era post
+e no seu post controller a funçao show esta usando $post
+dai se vc 'hint'(aponta...sugere...da a letra...sei lah)
+com o \app\post
+
+ele saca e pega esse recusrso pra gente automaticamente!!!
+
+fodao!
+
+
+alem do mais... tinha q mudar um tal de find pra findOrFail....dai ele dava o erro 404 pra avisar q deu ruim lembra??
+
+ele ja faz isso sozinho...sem precisar ficar pedindo pra dar o erro 404
+
+
+dai no posts controller fica assim no final
+
+public function show(\App\Post $post)
+    {
+        return view('posts.show', [
+            'post'=>'$post',
+        ]);
+    }
+}
+
+só q tem um jeito de fazer mias facil que esse ai
+
+return view('posts.show', compact('post'));
+
+a funçao compact eh boa pra isso
+
+eh mesmca coisa
+ele vai match post igual uma variavel post
+
+e dai pode mandar quantas strngs vc quiser ali... mas só temos nosso post...entao vai 1 so memso nesse caso
+
+
+agr vamos no show.blade
+
+@section('content')
+<div class="container">
+    <img src="/storage/{{ $post->image }}" alt="">
+</div>
+@endsection
+
+mudamos a str Show pra uma tag img
+
+usando tag do bigode e o link pra acessar as imagens....
+e dai aparce a foto!!
+
+agr vamos arrumar essa view direitinho provavelmente...
+
+mas tem coisas q notei.... qunado loga.... ainda vai pra home
+
+deveria ir pro profile de quem logou
+
+tem mais.... pra colocar novos pots.... ta dando ruim agr....o /p/create paro parece
+
+
+
+
+
+oh.. no show.blade
+
+<div class="row">
+        <div class="col-8">
+            <img src="/storage/{{ $post->image }}" class="w-100">
+        </div>
+        <div class="col-4">
+            <div>
+                <h3>{{ $post->user->username }}</h3>
+
+                <p>{{ $post->caption }}</p>
+            </div>
+        </div>
+    </div>
+
+    ficou assim.....
+
+    nao tem ainda a foto do profile... curtidas e uma serie de coisas
+
+    o design nao esta igualzinho.. mas a parada nao eh copiar o layout.. e sim a funcionalidade
+
+
+    oh... arrumei uma parada aki sozinho....
+    fui no web.php
+
+    Route::get('/', function () {
+    return view('welcome');
+});
+
+Auth::routes();
+
+Route::get('/p/create', 'PostsController@create');          v  inverti essa
+Route::get('/p/{post}', 'PostsController@show');            ^  ordem e deu certo
+Route::post('/p', 'PostsController@store');
+
+Route::get('/profile/{user}', 'ProfilesController@index')->name('profile.show');
+
+
+
+agr vamos criar uma pagina para editar as informaçoes do profile...
+como foto...descriçao..url...e tarararararar
+
+
+boris...
+
+no index.blade vamos caçar as paradas
+
+onde tinha o link de add new post
+
+<div class="col-9 pt-5">
+            <div class="d-flex justify-content-between align-items-baseline">
+                <h1>{{ $user->username }}</h1>
+                <a href="/p/create"> Add New Post</a>
+            </div>
+            <a href="#"> Edit Profile</a>
+
+            colocamos uma tag ancor <a href="#">
+
+            dai nao ficou no lugar certo..
+            e colocamos fora da div e deu certinho embaixo do nome do perfil!!
+
+
+porem esse link somente pode ser acessado pelo dono do profile logado
+entao agora vamos ver algo sobre
+ rows...
+ restringir acesso a certas partes da aplicaçao
+
+ de novo no HTTP controllers
+
+
+ agora eh um parametro edit
+
+ entao vamos alterar o link do edit profile para
+
+ <a href="/profile/{{ $user->id }}/edit"> Edit Profile</a>
+
+agora vamos editar as rotas.... pois testando no navegador.. ele abre o endereço;;; mas como nao tem nenhuma views pra mostra
+da o erro 404
+
+
+portanto dentro do web.php
+
+Route::get('/profile/{user}/edit', 'ProfilesController@edit')->name('profile.edit');
+
+colocamos essa linha no final
+
+basicamente copiamos a ultima pra baixo.. e procamos show por edit...
+alem de colocar /edit depois da variavel user no endereço
+
+
+agora no ProfilesController temos que criar o edit q routeamos
+
+    public function index($user)
+    {
+        $user = User::findOrFail($user);
+
+        return view('profiles.index', [
+            'user' => $user,
+        ]);
+    }
+
+    public function edit(\App\User $user)  ----->maneira nova de route model binding
+    {
+        return view('profile.edit', compact('user'));    ----->maneira nova usando compact()
+                                                        pra buscar user e se der erro mandar 404
+    }
+
+mas dai depois... vamos arumar tudo.. pro codigo ficar mais limpo. inteligente.. e zica do pantano de rapido!!
+
+
+
+class ProfilesController extends Controller
+{
+    public function index(\App\User $user)
+    {
+        return view('profiles.index', compact('user'));
+    }
+
+    public function edit(\App\User $user)
+    {
+        return view('profile.edit', compact('user'));
+    }                  ----^^⁻----  a la...errado..sem o 's' porra!!!
+}
+
+
+
+
+e eh assim qq a banda toca!!
+
+
+
+class ProfilesController extends Controller
+{
+    public function index(User $user)
+    {
+        return view('profiles.index', compact('user'));
+    }
+
+    public function edit(User $user)
+    {
+        return view('profile.edit', compact('user'));
+    }                  ---^^^--- olha o erro.... faltou um 's'....fiquei lokinho meia hora nos forum..
+}                           só arrumei quando recomecei a fazer de novo e fui conferindo
+
+
+pode diminuir o endereço da parada pq lah em cima vc tinha importado o endereço
+
+use \App\User;
+
+
+
+dai fica mis limpo ainda o cogido!!
+
+tem q ficar esperto tbm neh... fazer bobeira nao
+
+
+enfim.. agr tudo certo depois do 's' faltando....
+
+arrumando pagina view... pra confirmar.. jogamos a tag bigode... e mandadmos um user id
+
+
+{{ $user->id }}.....dai da certo e pronto.....
+fomos lah no create.blade... e copiamos o formulario inteiro...
+ams agr action nao eh mais /p .....
+vamos mexer com otro tipo de http controller....... acho nq eh o penultimo...
+ja mexemos com index create store show edit 
+
+agr vai ser updated
+
+depois tem mais delete....
+
+dahora... vamos usar todos... a parada eh loka mesmo....
+
+bom... sobre esse http controller
+
+o verb dele eh put/patch ......put parece inserir... patch parece mais com atualizar
+
+o cara prefere usar esse codigo pelo significado logico ao ler o codigo...
+porem os navegadores recebem apenas get e post....
+vamos ter q fazer alguma macumba pra enganar o navegador....
+
+
+<form action="/profile/{{ $user->id }}" enctype="multipart/form-data" method="post">
+        @csrf
+        @method('PATCH')
+
+
+        action ficou /profile/ tag do bigode com user id..... method post certo???
+
+        errado...
+        vc va uma @ q eu nao lembro q q eh..... query.. sei lah..media.. nem lembro.. fodasse...
+
+        dai @method e coloca o baguio q o laravel entende como hattp controller..
+        e vamos ver q ele atualiza as informaçoes no banco de dados!
+
+
+        ok.. agr vamos no routes...
+        web.php
+
+        Route::get('/profile/{user}', 'ProfilesController@index')->name('profile.show');
+Route::get('/profile/{user}/edit', 'ProfilesController@edit')->name('profile.edit');
+Route::patch('/profile/{user}', 'ProfilesController@update')->name('profile.update');
+
+
+a ultima linha... colocamos o update depois das @ e zas.... tiramos o edit do endereço... e boa...
+esqueci de colocar patch;;;..deu varios erros do caraio ai...mas arrumei..agr vao dar outros..ctz hehehe
+essa linha vai atualizar nosso banco com as infos do formulario da pagina....
+o toue de cima.. vai mostrar o formulario da pagina...
+
+agr vamos arrumar a view do edit.blade.php
+
+
+<form action="/profile/{{ $user->id }}" enctype="multipart/form-data" method="post">
+        @csrf
+        @method('PATCH')
+
+
+        <div class="row">
+            <div class="col-8 offset-2">
+
+                <div class="row">
+                    <h1>Edit Profile</h1>
+                </div>
+
+                <div class="form-group row">
+                    <label for="title" class="col-md-4 col-form-label ">Title</label>
+            
+                    <input id="title" 
+                           type="text" 
+                           class="form-control @error('title') is-invalid @enderror" 
+                           name="title"                           
+                           value="{{ old('title') }}" 
+                           autocomplete="title" autofocus>
+
+                    @error('caption')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+
+                <div class="form-group row">
+                    <label for="description" class="col-md-4 col-form-label ">Description</label>
+            
+                    <input id="description" 
+                           type="text" 
+                           class="form-control @error('description') is-invalid @enderror" 
+                           name="description"                           
+                           value="{{ old('description') }}" 
+                           autocomplete="description" autofocus>
+
+                    @error('caption')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+
+                <div class="form-group row">
+                    <label for="url" class="col-md-4 col-form-label ">Url</label>
+            
+                    <input id="url" 
+                           type="text" 
+                           class="form-control @error('url') is-invalid @enderror" 
+                           name="url"                           
+                           value="{{ old('url') }}" 
+                           autocomplete="url" autofocus>
+
+                    @error('caption')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+
+                <div class="row">
+                    <label for="image" class="col-md-4 col-form-label ">Profile Image</label>
+                    
+                    <input type="file", class="form-control-file", id="image" name="image">
+
+                    @error('image')
+                            <strong>{{ $message }}</strong>
+                    @enderror
+                </div>
+
+                <div class="row pt-4">
+                    <button class="btn btn-primary">Save Profile</button>
+                </div>
+
+            </div>
+        </div>
+    </form> 
+
+
+    form ficou assim....
+    basicamente mudamos a label dos formularios pra pater a nomenclatura dos outros atributos...
+    como id name e uns outros valores dentro de ''
+    fizemos 3 delas para alterar as paradas do perfil
+    tbm mudamos o q escreve em cima dos formularios pra bater certinho
+
+    agr ele quer colocar esccrito dentro dos formularios valores preexistentes no banco de dados
+    vamos ver como faz...
+    algo com placeholder deve ser.... porem buscando valor no banco e guardando numa variavel pra jogar nos formularios
+
+
+uma das coisas q tinha q alterar nos forms q estava entre '' ficava no value com tag bigode puxando uma funçao nova
+funçao old() .... ela puxa alguma valor que ja tav escrito no formulario quando vc falha na validaçao por exemplo
+
+se o cara nao faz isso.. a validaçao falha.. e vc reseta os valores dos fomrs...
+e o cara tem q  digitar tudo de novofica com raiva. e fala q seu sistema eh um cu
+
+mas com isso.. os valores volram e ele da um aviso q nao validou.. pro cara poder corrigir e tentar de novo
+
+dai ele vai mandra um && depois disso.. com o valor da validateriavel do profile...
+
+dai fica assim
+
+value="{{ old('title') ?? $user->profile->title }}"
+
+dahora... funciona...
+agr faz pra tudo q eh fomr q jah tinha e zas zas zas zas
+
+
+deu um monte de pau e arrumou tudo sozinho.... mas seilah neh... 
+
+
+public function update()
+    {
+        $data = request()->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'url' => 'url',
+            'image' => '',
+        ]);
+
+        dd($data);
+    }
+assim o paguio valida tudo do edit....
+
+obrigatoriamente url tem q ter http://
+title e description tem q ter valor.... ou nao pode podeletar na real...
+se noa colocar nada.. deixa o velho lah sacou??
+
+agr ele vai falar algo sobre se lah o q aivom ver
+
+
+public function update(User $user)   ---> aqui estamos pegando as infos do usuario 
+    {
+        $data = request()->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'url' => 'url',
+            'image' => '',
+        ]);
+    }
+
+        $user->profile->update($data);  ---> aqui estamos atualizando a variavel $fata coma s infos do usuari
+
+        return redirect("/profile/{$user->id}");   ---> aqui a gente ta mandando voltar pro profile depois de tudo
+        com isso ta um erro de filleable 
+
+        dai a gente vai lah em profile.php
+
+        e tem q colcar aquela linha lah
+        protected $guarded = [];
+
+        lembrando q a gente desprotege.. pq temos tudo nomeadinho bunitinho..
+        estamos nos cuidando pra ninguem q nao esteja logado mexa nissoe
+        alem do mais qcada um soh pode mexer no seu perfeil
+
+        dai blz... podemos alterar tudo no perfil.. dahora legal!! ihul!!
+
+        mas o seguinte... qualquer um altera o perfil de qualeur um
+        usando o navegador e alterando os parametros
+        dai ele vai monstar um lance do auth()
+
+        vejamos!
+
+
+        $user->profile->update($data);
+        diso.. mudamos pra isso..
+        auth()->user()->profile->update($data);
+
+agr na funcao q ficava acima disso.. q da um user... ele soh deixa o user mexer nass coisas do user.. e tals..zaus zaus
+
+enquanto isso ele testou assim....
+foi numa janela anonima... entrou no noiagram delsogado...
+dai saiu alterando perfil dos outros...
+agr com essa auteraçao.. noa da mais
+
+temos uma camada de proteçao a mais!!
+
+ele ainda vai mexer com um tal de policy pra poder ver essa parada certinha!!
+
+na real esse edit rofile..nem deveria estar aparecendo pra vc jah q vc nao eh o usuario dono do perfil
+
+policies sao espicificas de algum modelocome elas determinan o q o usuario pode ou nao pode fazer aonde
+
+
+dai vamos pro terminal
+lah tem o
+
+php artisan make:policy
+
+dai isso cria uma nova policy class
+
+com helpo ele ve certinho
+
+precisamos de um nome..... e pode ter uma opçao ou nao
+
+vamos usar a opçao -m de modelo..... antes era de migrations hein!!! fica esperto tiozinho!!!
+
+
+php artisan make:policy ProfilePolicy -m Profile
+
+
+pronto.. criou...
+agr seguinte]]
+
+
+em /app vai ter policies
+
+lah dentro tem a policy criada
+
+dentro da ProfilePolicy tem varios metodos (eu achava q era função)
+
+basicamente voce descomenta a linha do metodo que voce quer alterar as configuraçoes
+
+existe os metodos
+viewAny
+view
+create     -----> eh o unico que nao esta ligado a profile,afinal ele ainda nem foi criado neh??? hehehehe
+update
+delete
+restore
+forceDelete
+
+cada um deles representa uma açao que pode ser tomada por algum recurso em particular
+nesse caso um profile
+e isso eh tudo baseado no user.... mais precisamente
+no usuario autenticado que temos no exato momento
+
+e pra cada um desses metodos basicamente vc vai dizer true or false
+
+
+agr chega de falar...
+vamos precisar mexer no update...afinal eh a permissao que queremos dar para o usuario autenticado
+
+e como a gente determina se alguem(o usuario) pode alterar algo(o profile)
+
+
+ public function update(User $user, Profile $profile)
+    {
+        return $user->id == $profile->user_id;
+    }
+
+    a funççao fica assim
+
+    que eh assim...o user id do profile tem que ser igual ao id do usuario logado..... entao será permitido o update!
+
+ou seja.... o usuario logado eh o dono do profile!!!
+
+
+agora vamos ao ProfilesController autorizar essa ação!!
+
+
+public function edit(User $user)
+    {
+        $this->authorize('update', $user->profile); ---->vamos autorizar um updade nesse profile em particular 
+                             '                                 pois ele bate com id do usuario logado
+        return view('profiles.edit', compact('user'));              com essa linha de cima a view do nosso edit profile estará protegida
+    }
+
+fazendo o teste...logamos...entramos na pagina para editar perfil
+http://127.0.0.1:8000/profile/1/edit
+ agr saimos da conta....e tentamos acessar o mesmo endereço....
+
+ erro 403... nao autorizado!!!!!
+
+ agora veremos.... o q mais precisamos poteger???
+
+
+ public function update(User $user)
+    {
+        $this->authorize('update', $user->profile);
+        
+        $data = request()->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'url' => 'url',
+            'image' => '',
+        ]);
+
+        auth()->user()->profile->update($data);
+
+        return redirect("/profile/{$user->id}");
+    }
+
+
+
+    a função debaixo tbm vai com a linha this tararara.....agora o cara nao poed abrir a pagina de editar profile...
+    e tambem nao pode tentar editar a pagina mesmo usando parametros na html.....
+    tem q ficar esperto com segurança....
+    fechar todas as portas e frestas pra os fds nao invadir!!!!
+
+
+
+agora vamos dar um jeito naqueles links add post e edit profile...... 
+apenas o dono do perfil deve ver esses links.... 
+mesmo que ja estejam protegidos...
+
+
+
+no index.blade....
+vamos na parte de proteger o edit profile
+            
+            @can('update', $user->profile)
+                <a href="/profile/{{ $user->id }}/edit"> Edit Profile</a>
+            @endcan
+
+
+isso tem haver com policies segundo magrelo...... a parada eh a seguinte... agr soh o dono do profile ve o link
+
+vamos fazer isso para add post tbm
+
+
+                @can('update', $user->profile)
+                    <a href="/p/create"> Add New Post</a>
+                @endcan
+
+
+    pronto.... merma fita..... e deu certinho!!
+
+pronto...agr ele foi mexer...tentou postar....e descobriu q ta dando erro de route.....e eu jah percebi a treta
+
+
+mudei a ordem dos routes e deu certo
+
+ele vai explicar agr.... eles estao conflitando
+
+
+Route::get('/', function () {
+    return view('welcome');
+});
+
+Auth::routes();
+
+Route::get('/p/create', 'PostsController@create');              --->> essa ordem eh correta
+Route::get('/p/{post}', 'PostsController@show');                --->> eu jah tinha invertido
+Route::post('/p', 'PostsController@store');
+
+Route::get('/profile/{user}', 'ProfilesController@index')->name('profile.show');
+Route::get('/profile/{user}/edit', 'ProfilesController@edit')->name('profile.edit');
+Route::patch('/profile/{user}', 'ProfilesController@update')->name('profile.update');
+
+
+----------------------------------------------------------------------------------------------
+
+
+
+Route::get('/p/{post}', 'PostsController@show');          ------>> essa ordem ele colocou e deu ruim
+Route::get('/p/create', 'PostsController@create');        ------>> pq ela pega tudo q vem depois do /p/{aquiDentro}
+Route::post('/p', 'PostsController@store');               ------>> e por isso tem q ficar esperto com isso q se nao o {} pega o valor... 
+                                                    --->> dai nunca q a programaçao vai chegar na proxima linha
+                                                    --->>variaveis devem ficar mais profinal pra nao dar xabu ele diz...
+                                                    --->dai joga a linha pro final pra ficar melhorr
+
+
+                                                    isso nao acontece direto. mas acontece viu...fica ligado bonitao!!
+
+
+agora vamos arrumar a imagem do perfil!! e deixar editavel!
+
+
+em ProfilesController temos a função updade
+
+se o request de salvar profile tiver uma imagem...ele fara algo.....se nao...vamos apenas assumir q a imagem antiga esta boa
+ou seja.... nem sempre o cara vai mandar foto... noa tem que ser obrigatorio....
+mas quando ele mandar....teremos que substituir a imagem...redimensionar...armazenar e tudo mais....
+
+
+seria algo que fizemos com nosso PostsController.... sobre armazenar as fotos dos posts!
+
+
+
+copiando tudo e alterando um pouquinho temos isso no metodo update()
+
+
+
+public function update(User $user)
+    {
+        $this->authorize('update', $user->profile);
+        
+        $data = request()->validate([
+            'title' => 'required',
+            'description' => 'required',
+            'url' => 'url',
+            'image' => '',
+        ]);
+
+
+        if (request('image')) {
+            $imagePath = request('image')->store('profile', 'public');        ----->aqui ele mudou de storage pra profile
+            
+
+            $image = Image::make(public_path("profile/{$imagePath}"))->fit(1000, 1000);   ---> aqui tbm mudou.. mas vai dar pau q eu jah vi IMAGE SOURCE NOT READABLE     ->>>>tem q arrumar pra storage de novo e dai vai
+                                                                --->>^^^^^^tambem colocou pra ficar de 1000x1000px
+            $image->save();
+        
+        auth()->user()->profile->update($data);   ---> nao podemos dar update dos dados sem antes manipular a imagem neh!!!!
+        }
+
+        return redirect("/profile/{$user->id}");
+    }
+
+porem tem mais alteraçoes no auth() ----> vejamos
+
+
+auth()->user()->profile->update($data);
+
+
+$data eh uma array contendo title, description, url, image
+
+e na image nos temos a imagem que foi enviada pelo usuario
+porem ela nao passou pelo imagePath para ser tratada e armazenada corretamente
+portando....teremos que fazer umas gambis
+
+um tal de merge arrays
+
+
+dd($data);
+
+auth()->user()->profile->update(array_merge(
+    $data,
+    ['image' => $imagePath],
+));
+
+
+dessa maneira....na hora de coletar as infos....
+nós substituimos a imagem recebida pela mesma jah tratada na sequencia
+e guardamos o endereço dela na array
+
+
+array:4 [▼
+  "title" => "baze gatao"
+  "description" => "sou noiadao no pó"
+  "url" => "https://xvideos.com"
+  "image" => Illuminate\Http\UploadedFile {#1170 ▶} -----> note que a image está como uploadedFile
+]
+
+esse  é o resultado do dd($data);
+
+
+porem se colocarmos o dd para o array_merge 
+olha a diferenã do resultado
+
+array:4 [▼
+  "title" => "baze gatao"
+  "description" => "sou noiadao no pó"
+  "url" => "https://xvideos.com"
+  "image" => "profile/iWdpHaPM1D69MTwj1TLfcmgV5T6IbcXnH1N4G8QA.png"  ---> agora temos o endereço correto
+]
+
+
+depois disso tudo...tiramos os dd tudo da pagina...e zas zas zas
+
+vamos pro create profile table arrumar umas coisas
+pq sem ter tabelas pra receber a imagem..... da esse erro aki
+
+Illuminate \ Database \ QueryException (HY000)
+SQLSTATE[HY000]: General error: 1 no such column: image (SQL: update "profiles" set "image" = profile/Cfy3lq8evk0gHvg0ufjtUvRYeoTYinmPxxhektIE.png, "updated_at" = 2021-07-13 03:49:58 where "id" = 1)
+
+
+public function up()
+    {
+        Schema::create('profiles', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('user_id');
+            $table->string('title')->nullable();
+            $table->text('description')->nullable();
+            $table->string('url')->nullable();
+            $table->string('image')->nullable();   -----> criamos essa linha aqui
+            $table->timestamps();
+
+            $table->index('user_id');
+        });
+    }
+
+porem agora vai quebrar tudo... temos q migrar o banco de novovai dar pau..
+vamos ter que apagar e perder tudo
+
+php artisan migrate:fresh
+
+e pronto... dropamos as tabelas... e subimos tudo de novo
+
+
+da outra vez nos criamos o banco de dados usando o tinker....
+assim quando adicionamos as infos no banco manualmente...deu certo
+e assim pudemos testar e navegam.... porem... ao tentar fazer oturos perfis...nunca dava certo
+
+agr ele diz w tem q fazer um algo rpa deixar isso automatico!!
+
+vom ver
+
+
+ele explica que apesar de registrado... nosso usuario nao tem um profile criado...
+portanto ao registrar um novo usuario....devemos criar junto m profile vazio pelo menos
+assim ele podem usar o app e editar seu perfil posteriormente a criação da conta
+
+em user.php
+
+acima do metodo posts()
+
+colocamos isso
+
+protected static function boot()
+    {
+        parent::boot();  //TODO: Change the autogenerate stub
+    }
+
+esse metodo e o que chamamos ao bootar esse modelo...
+mesmo se nos dermosoverwrite nesse metodo ele ainda vai chamar o parrent::boot()
+
+mas entao vamos colocar outra coisa embaixo
+
+protected static function boot()
+    {
+        parent::boot();  //TODO: Change the autogenerate stub
+
+        static::created(     --->> isso se torna um evento..e é acionado 
+                                sempre que um novo usuario é criado
+            
+        )
+    }
+
+
+agora vamos ver a documentação
+
+procurar por eloquent model events naquela pagina de documentaçao do http controllers
+lá ele mostra varios eventos
+retrived
+creating   -----> ing eh chamado antes de criar o registro na database
+created    -----> ed eh chamado depois de jah pronto...e assim fazendo upload das infos
+updating
+updated
+saving
+saved
+deleting
+deleted
+restoring
+restored
+
+
+no fim ficou assim
+
+protected static function boot()
+    {
+        parent::boot();  //TODO: Change the autogenerate stub
+
+        static::created(function ($user) {     ------>vamos fazer um fechamoento pra created()
+            $user->profile()->create([      ----> o legal é que isso vai criar o model  (com profile junto)
+                'title' => $user->username,  --->   na primeira linha a gente aceita isso como $user
+            ]);             ----->dai a gente faz o q tem quer ser feito pra criar tudo certinho na base
+        });    ----> dos relationships...assim o user id ajeita todo o resto 
+    }    ->>na segunda linha create() era assim...e já vale afinal era tudo nulleable(exceto user_id)
+    ---> ele encheou linguiça pra modificar o title e usar os dados de username automaticamente.
+
+depois disso voce tem que limpar o banco de novo
+
+php artisan migrate:fresh
+
+dai entao... tudo de novo...
+registra... e ao logar.... da o erro de rota do home ainda.... pra variar neh
+porem... o usuario eh registrado...
+o profile eh criado...
+e o title do profile jah vem com o o username imbutido
+
+
+agora as coisas funcionam...as imagens do perfil vao pro banco de dados...
+vamos arrumar a imagem do profile e dos posts entao neh????
+
+
+detallhe.... eu tirei as validaçoes de imagem do PostsController e do ProfilesController
+eu nao encontro alguma que aceite jpg
+
+mentira....alterei aqui
+
+'mimes:jpg,jpeg,png,gif,bmp' isso serve no lugar de image....e aceita jpg...
+a fita eh....svg nao eh suportado pelo gd ---> eh i intervention/Image/Facades/Image
+ou seja... melhor deixar assim
+
+
+vom bora.... na pagina index.blade.php.... alteramos a img tag para
+
+<div class="col-3 p-5">
+            <img src="/storage/{{ $user->profile->image }}" class="rounded-circle w-100">
+        </div>
+
+
+        e pronto...temos nossa imagem do perfil atualizavel
+
+
+
+agr para os posts....
+na pagina  show.blade.php
+
+basicamente parecido... tirando o fato q nao haviamos colocado a imagem antes
+alias....estamos alteranto todo o view dessa pagina
+portando... muito de css...e gambis...
+
+remenber de classes que usei
+p-------------------------------paddington (pr,pl,pt,pb)
+m-------------------------------margin (mr,ml,mt,mb)
+h-------------------------------hipertext (h1,h2,h3,h4,h5,h6) eu acho..... num testei
+w-100---------------------------width (determina um valor para mostrar na pagina)
+rounded-circle------------------deixa corta as bordas da imagem deixando ela redirecionado
+justify-content-between---------separa conteudo pros lados??? e deixa o centro livre??
+align-items-baseline------------alinha tudo pela linha debaixo
+align-items-center--------------alinha tudo no centro (em relaçao a vertical???)
+d-flex--------------------------dispoe itens em sequencia conforme o espaço do display
+row-----------------------------deixa conteudo em linha
+col-----------------------------determina colunas.... ams nao entendi ainda
+font-weight-bold----------------negrito na fonte
+flex-center---------------------sei la
+position-ref--------------------sei la
+full-height---------------------sei la
+top-right-----------------------mantem tudo no canto superior direito(tirei do login register home)
+text-dark-----------------------deixa texto com cor mais escura
+
+
+tag p tem uns paddingtons predefinidos....
+qunado usamos p tag no username do lado da foto do perfil em um post
+notamos que o texto subiu um pouco... por conta desse pb q ele tem
+
+tem um lance sobre espaçamento nas tags span
+entre o username e caption eu havia deixado 1 espaço
+porem o colocar os usernames dentro de tags ancor....
+o espaçamento sumiu entre a tag </a> </span>
+portando..dei espaço dentro da tag ancor apos o username e funcionou
+coloquei o espaço antes do caption na tag p apos </a></span> {{ $post->caption }} etambem funcionou
+
+outra coisa... ao transformar usernames em links.... fudeu com as cores
+
+pra arrumar isso...colocamos as tag bigode dos usernames dentro de <span class="text-dark">
+********obs...fiz isso assimmm      span.text-dark
+
+
+pronto...alterou varias fitas.... diz q isso foi um pouco de bootstrap(q preciso descobrir o que eh ainda)
+
+@section('content')
+<div class="container">
+    <div class="row">
+        <div class="col-8">
+            <img src="/storage/{{ $post->image }}" class="w-100">
+        </div>
+        <div class="col-4">
+            <div>
+                <div class="d-flex align-items-center">
+                    <div class="pr-3">
+                        <img src="/storage/{{ $post->user->profile->image }}" class="w-100 rounded-circle" style="max-width: 40px;">
+                    </div>
+                    <div>
+                        <div class="font-weight-bold">
+                            <a href="/profile/{{ $post->user->id }}">
+                                <span class="text-dark">{{ $post->user->username }}</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
+
+
+
+                <p><span class="font-weight-bold">
+                    <a href="/profile/{{ $post->user->id }}">
+                        <span class="text-dark">{{ $post->user->username }}</span>
+                    </a></span> {{ $post->caption }}
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+@endsection
+
+resumindo
+para colocar a foto do profileseparamos os itens em divs
+uma pra imagem
+outra pro username
+redimensionamos
+alteramos display
+mudamos fonte
+descobrimos paddinton padrao do p
+colocamos hr(horizontal rule)....uma tag q gera uma linha
+transformamos username em links
+acertamos cores e espaçamentos
+agr ta bem melhor
+
+vamos mexer com follow????
+
+acho q ainda nao....por fim ele colocou apenas uma tag ancor assim
+
+<a href="#" class="pl-3">Follow</a>
+
+ela fica localizada depois do username do lado da foto
+mais precisamente...3 divs acima do hr
+
+
+agr vamos mexer com a imagem padrao de qunado se cria um usuario
+
+
+vamos fazer uma gamibs ai....
+pegamos uma foto de perfil pra ser a basica e atualizamos no perfil
+entao copiamos o endereço dela apos esse processo
+
+
+ele abre show.blade e encontra tag img da foto de perfil
+
+
+                    <div class="pr-3">
+                        <img src="/storage/{{ $post->user->profile->image }}" class="w-100 rounded-circle" style="max-width: 40px;">
+                    </div>
+
+ele gostaria de intercptar esse requisiçao da imagem aki src="/storage/{{ $post->user->profile->image }}"
+
+vamos fazer um metodo especial no profile.php pra sempre retornar sempre uma imagem....
+sendo uma escolhida pelo usuario.... ou uma imagem padrao q ocupa esse espaço
+
+
+no modelo profile.php
+
+vamos criar um metodo novo chamado profileImage()
+
+entao fica assim
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Profile extends Model
+{
+    protected $guarded = []; 
+
+    public function profileImage() ----> metodo q chamaremos para q sempre tenha uma imagem de perfil
+    {
+        return($this->image) ? '/storage/' . $this->image : '/storage/profile/e9FbroIaxR8AMphaoCDJjOhuGRqi2eP5M5edqX0s.jpg';
+    }
+    
+    public function user()
+        {
+            return $this->belongsTo(User::class);
+        }
+}
+
+****************************************************
+********************************                    $this   $this   $this   $this
+******************* $this   $this   $this   $this   
+
+pelo q peguei na fita aqui...essa porra de $this q aparece toda hora
+
+eh uma variavel que pega todos as propriedades de determinado modelo
+dei uma vasculhada aki e elas so apareceram ateh agora na pasta app mesmo
+em models e controllers.....
+
+
+agr vamos entender isso
+
+return($this->image) ? '/storage/' . $this->image : '/storage/profile/e9FbroIaxR8AMphaoCDJjOhuGRqi2eP5M5edqX0s.jpg';
+
+entregar  image(nome da imagem do profile) pra $this         ?----> então (eu acho)----->>erroouuuu
+
+? isso funciona como if statment completo
+
+se tao coisa ? isso : iço ? eh entao : eh ou nesse caso
+
+if(se tao coisa)
+then(isso)
+else(nao eh tao coisa)
+then(iço)
+
+
+
+agora o . eh outra coisa
+
+eh usado pra concatenar(juntar) coisas numa string
+
+agr voltamos de novo professor tiburcio!!!
+
+
+return($this->image) ? '/storage/' . $this->image : '/storage/profile/e9FbroIaxR8AMphaoCDJjOhuGRqi2eP5M5edqX0s.jpg';
+
+
+
+
+vamos entregar a imagem q tiver no modelo usando $this a imagem for sendo:
+                            return($this->image) ?
+
+
+
+como $this pegou o valor de image (que eh nome do arquivo da foto)              ----->>caso tiver algo ai...vai ele
+'/storage/' . antes dele junta isso ao nome para gerar um endereço              ----->>se naoo......
+                '/storage/' . $this->image :
+
+
+
+        manda essa foto aqui mermo q eu jah tenho vai!!
+'/storage/profile/e9FbroIaxR8AMphaoCDJjOhuGRqi2eP5M5edqX0s.jpg';
+
+pronto...aprendi varios códigão!!!
+
+?? eh algo q pula variavel até ter valor parece.....
+
+
+ele ainda brinca mais
+
+return '/storage/' . ($this->image) ? $this->image : '/profile/e9FbroIaxR8AMphaoCDJjOhuGRqi2eP5M5edqX0s.jpg';
+
+assim o codigo fica mias limpo
+pois depois disso... ele ainda limpa varios storage dos endereços onde usamos as imagens
+no index e no show as fotos do perfil ficam assim agora..... 
+em vez ed chamar o nome da foto em image.... 
+chama o metodo profileImage() (com parentesiss is ziz)
+
+<img src="{{ $post->user->profile->profileImage() }}
+
+
+
+
+enfim... foi testar...dai deu bosta nas fotos....
+o laravel nao gostou de como isso ta escrito ele deu um dd lah...e mostrou q nao tava concatenando storage lah na frente....
+
+return '/storage/' . ($this->image) ? $this->image : '/profile/e9FbroIaxR8AMphaoCDJjOhuGRqi2eP5M5edqX0s.jpg';
+
+
+entao vamos fazer assim
+
+$imagePath = ($this->image) ? $this->image : '/profile/e9FbroIaxR8AMphaoCDJjOhuGRqi2eP5M5edqX0s.jpg';
+return '/storage/' . $imagePath;
+
+
+
+pronto.. funcionou.. tudo certo.. criamous outro perfil e ele jah tinha foto basica.....
+
+mas agr ele entrou pra editar o profile..... e disse q ao acertar essa parte...cagamos em outra...
+
+vom ver
+
+
+a treta eh a seguinte.... agra se o cara editar o perfil...e nao  quiser colocar foto dele....
+na hora de salvar as outras infos..... vai dar pau!!
+
+ErrorException (E_NOTICE)
+Undefined variable: imagePath
+
+
+ele explica...toda vez a gente acha q vai ter uma $imagePath definida por padrao....
+mas as vezes ela nao está.....e se ela nao foi definida..
+é porque nao houve imagem na request pra mandar as outras infos....
+porém no nosso codigo ela está sendo definida mesmo que no final...
+problema é que as vezes ela eh defina sem nenhum valor
+
+
+        auth()->user()->profile->update(array_merge(
+            $data,
+            ['image' => $imagePath ?? null] ----->>>isso nãaaooo póóóóodgeee
+        ));
+desse jeito quando jah tiver uma imagem.....e ao atualizar o cara nao mandar outra imagem
+essa parada ai vai deletar a imagem que jah tem...e deixar link quebrado...
+
+
+
+
+ele vai extrair isso['image' => $imagePath] pra uma variavel imageArray e depois do image->save()
+assim se tiver uma imagem na request.... ela vai certinha
+
+caso contrario....no array_merge ela recebe uma array vazia...e eu nao entendi nada... mas funciona
+
+
+        if (request('image')) {
+            $imagePath = request('image')->store('profile', 'public');
+            
+
+            $image = Image::make(public_path("storage/{$imagePath}"))->fit(1000, 1000);
+
+            $image->save();
+
+            $imageArray = ['image' => $imagePath];
+        }
+
+        
+        
+        auth()->user()->profile->update(array_merge(
+            $data,
+            $imageArray ?? [],
+        ));
+
+
+
+agora sim vamos pros FOLLOWERS!!!!!!!!
+
+vamos arrumar o botao de seguir no index.blade.php view
+
+
+<div class="d-flex justify-content-between align-items-baseline">
+                <div class="d-flex align-items-center pb-3">
+                    <div class="h4">{{ $user->username }}</div class="h4">
+                    <button class="btn btn-primary ml-4">Follow</button>
+                </div>
+                @can('update', $user->profile)
+                    <a href="/p/create"> Add New Post</a>
+                @endcan
+
+
+
+ficou bunitao assim mesmo
+
+tivemos q colocar divs pra fugir do d-flex e justify content between
+tacamos botao e username dentro duma outra... ajeitamos... com class e e boa
+
+
+agr vom ver esse botao funcionar ou nao vamos????
+
+quando ele clicar no botao... ele nao quer q o paranaue recarregue o browser inteiro...muito trampo
+muito processo... transferencia mais pesada....demora mais...deixa programa lerdo com muita gente fazendo isso toda hora
+carrega servidor...da treta... ele iz q vai trazer um conceito novo
+
+esse eh o conceito de vue
+
+aeweeeeee
+
+vue    vue    vue    vue                  vue    vue    vue    vue    vue    
+   vue    vue    vue    vue           vue    vue    vue    vue    
+       vue    vue    vue    vue    vue    vue    vue    
+           vue    vue    vue    vue    vue    vue    
+               vue    vue    vue    vue    vue    
+                         vue    vue    
+                             vue          
+
+ele nem falou enquanto a gente tava no front-end...
+mas vaiser bom..dahora... e maior legalihulll tralala
+
+
+vamos transformar o follow button em um vue component
+pq dai nao precisa recarregar a pagina inteira
+
+mas qunado clicar...ele fala com o servidor.... 
+ei... segue ela ali!!! dai a gente tem um feedback
+e se clicar de novo dai ele alterna e dessegue q deu ruim
+
+disse q vai ser simples... mas eu duvido
+
+vamos lah explorar mais algumas pastas do projeto
+
+/resources/js/components contem um arquivo chamado ExampleComponent.vue
+
+ele falou q nao vai dar curso de vue nao... mas vai deixar vc com os pés imersos nele
+
+em geral esse arquivo jah um componente funcional
+e ele já esta registrado em nosso app.js...que fica uma pasta acima dele
+
+no app.js tem essa linha
+
+Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+
+alá...aki falou e mostrou!!!
+
+
+vamos renomear esse arquivo ExampleComponent parra FollowButton.vue
+
+e dentro do app.js tbm....
+
+Vue.component('follow-button', require('./components/FollowButton.vue').default);
+                    ^^^^                                 ^^^^
+                            ALTERAÇÕES
+
+
+agora mexendo com o FollowButton.... deleta tudo entre template
+
+e cria uma div SÓ!!!! noa pode ter uma irma da outra...
+q se nao ele reclama q nao tem uma root div...
+e tudo tem que ficar dentro dessa div....se nao eh xabu!
+
+
+pois bem.... vamos lah no index.blade.php pegar o botao de follow
+
+recorta ele e insere dentro das divs de FollowButton.vue
+
+dai no lugar dele na index coloca
+
+<follow-button></follow-button>
+
+
+
+dai vamos pro terminao rodar 
+
+        npm run dev
+
+agora ele explica q dev eh pra fazer uma vez só
+mas tem esse outro aqui
+
+        npm run watch
+
+esse por outro lado fica ligado se tem alteraçao....
+e se tiver ele  compila de novo  e manda pro browser
+durante o desenvolvimento voce prefere deixar isso ligado pra adiantar o processo
+
+
+terminando vc atualiza apagina e ta tudo certo
+
+parece igual... mas eh agora o botao esta dentro do .vue
+se alterar ali.... o npm run watch salva..atualiza... 
+isso significa q esta funcionando
+
+agora pra linkar usuarios e fazer finalmente o follow...
+vamos começar lah no .vue
+
+<template>
+  <div>
+ ********   <button class="btn btn-primary ml-4" @click="followUser">
+      Follow me!!                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    </button>
+  </div>
+</template>
+
+<script>
+export default {
+  mounted() {
+    console.log("Component mounted.");
+  },
+
+*******  methods: {
+*******    followUser() {
+*******      alert("inside");
+*******    },
+*******  },
+};
+</script>
+
+
+criando aquele @click... followUser virou um metodo
+dai lah embaixo vc adiciona um methodo em vue.js
+
+nomenclatura malomé nova.... deve lembrar python segundo voce
+entao nem encana.... 
+mas dai ele criou um alerta do navegador na pagina... dizendo aquilo lah...
+
+mas agora precisamos fazer com que followUser acesse o servidor
+ 
+ laravel jah vem com axios instalado.... e essa biblioteta permite make api calls facim facim
+
+
+ dentro do bootstrap.js tem uma linha la
+
+ window.axios = require('axios');
+
+ e zas zas... o cara só tava mosntrando q laravel eh pica memo e tem muita coisa foda...
+ mas eh isso..
+ pode assumir q tem ans proxima q vai rolar....
+
+
+
+ voltando para o .vue
+
+
+ criamos routes no web.php
+ Auth::routes();
+
+Route::post('follow/{user}', function() {
+    return ['success'];
+});
+
+
+
+testamos coisas nos methodos
+
+
+methods: {
+    followUser() {
+      axios.post("/follow/1").then((response) => {
+        alert(response);
+      });
+    },
+  },
+
+  uma resposta de objeto foi recebida
+
+
+  ...agora nessa aki...vai ser diferente
+
+  methods: {
+    followUser() {
+      axios.post("/follow/1").then((response) => {
+        alert(response.data);
+      });
+    },
+  },
+
+  recebeu success...q vinha de lah da rota do web.php
+
+
+  agora q os testes foram feitos.... e com sucesso!!!
+  estamos nos comunicando como servidor de boas.....
+
+  vamos nas routas...tiarr aquela nhaca e colocar um controlador dos brabo!!
+
+
+  php artisan make:controller FollowsController
+
+  e zauss.... abre ele la
+
+
+
+  mantenha sempre a atençao ao colocar dentro duns parenteses lokos ai
+  (User $user) ....sem ver se lá em cima tem 
+
+  use App\User;
+
+  q dai foe o parmera neh fiiiii
+
+  em geral
+
+  criamos isso no FollowsController
+
+  public function store(User $user)
+    {
+
+    }
+
+
+dai voltando no web.php
+
+mudamos a rota para
+
+Route::post('follow/{user}', 'FollowsController@store');
+
+
+
+agora se vc olhar no .vue
+
+axios.post('/follow/1')----> 1 ta errado.... como q arruma tio??
+
+bom...
+
+.vue ficou assim
+
+<script>
+export default {
+  props: ["userId"],
+
+  mounted() {
+    console.log("Component mounted.");
+  },
+
+  methods: {
+    followUser() {
+      axios.post("/follow/" + this.userId).then((response) => {
+        alert(response.data);
+      });
+    },
+  },
+};
+</script>
+
+
+
+FollowsController.php ficou assim
+
+public function store(User $user)
+    {
+        return $user->username;
+    }
+
+
+dai quando vc clica no botao... aparece uma mensagem com o nome do usuario q vc 'deu' follow    
+
+************ esqueci
+
+<follow-button user-id="{{ $user->id }}"></follow-button> no index.blade mudamos o botao tbm!!!
+
+assim ele recebe o valor do usuario do profile
+
+
+agora q ta tudo ok.... testado e tals...
+cliquei em tudo q era follow de profile diferente e cada um deu a resposta com o username!!
+
+ja eh... vom linkar ow nao vamo???
+
+
+pra isso ele vai usar um tal de many to many
+
+
+jah tinhamos falado sobre one to one ....etambem on to many
+
+
+mas o profile pode ter many followers
+e um user pode follow many profiles
+
+
+das primeiras vezes.....adicionamos um foreign key pra uma das tableas e funcionou
+
+mas dessa vezes precisaremos criar uma pivot table
+
+e ela nao eh nada mais do que uma tabela que guarda os valores dos dois modelos relacionados
+
+nao eh dificil de fazer.... mas tem aquelas convençoes de nome... 
+
+
+vamos pro terminal....
+nao precisaremos criar um modelo.... apenas uma migration
+
+com esse comando...eh melhor dar o help mesmo
+tem umas frescuras....
+os modelos devem ficar em ordem alfabetica
+devem ficarm em minusculas
+e eles devem ser separados por _ underline
+
+dai o resto vc ve na nomenclatura lah
+
+o começo eh onome que ele escolheu
+
+php artisan make:migration creates_profile_user_pivot_table --create profile_user
+
+migration criada.... agr vamos pro migrations que criamos...
+
+lah precisa de duas tabelas só
+
+unsignedBigInteger('profile_id');
+unsignedBigInteger('user_id');
+
+
+eh isso...e bora migrar
+
+
+agr temos as tabelas pivo pra relacionar os FollowsController
+
+vamos primeiro no modelo User.php
+
+
+public function following()
+    {
+        return $this->belongsToMany(Profile::class);
+    }
+
+
+depois no Profile.php
+
+public function followers()
+    {
+        return $this->belongsToMany(User::class);
+    }
+
+mas o profile pode ter many followers
+e um user pode follow many profiles
+
+e isso foi feito
+
+precisamos pegar o usuario autenticado(logado) e basicamente ligar ou desligar esse relationships
+
+vamos fazer isso com toggle...que funciona tipo... conectado...e desconectado
+
+tudo controldado pelo botao eh claroo
+
+
+vamos pro FollowsController.php
+
+public function store(User $user)
+    {
+        return auth()->user()->following()->toggle($user->profile);
+    }
+
+la fica assim    
+
+
+return auth() user ----> pega o cara logado
+dai joga o following() relationship
+e chama o metodo toggle() --> que eh alternar.....
+dai a fita.. ele conecta e desconecta
+e ai a gente poe nele o q estamos ligando...
+no caso
+user->profile ---> esse user é oque esta sendo passado pra gente e nao o usuario logado
+
+
+?????????????????????????????????????????????????????????       sera q auth eh isso mesmo??
+?????????????????????????????????????????????????????????       ele pega algo de cokie token sei lah
+?????????????????????????????????????????????????????????       da autenticaçao da sessao do usuario
+?????????????????????????????????????????????????????????       que esta logado no momento??
+
+
+eh isso..usamos auth user pra ligar no user q o toggle recebe do profile;
+
+
+na hora do teste...ele falhou... pq estava de loggout....erro 500
+
+
+o meu deu certo direto..pq eu estava logado
+
+
+depois ele vai resolver
+
+
+no .vue
+trocamos alert por console.log
+
+
+dai no chrome tivemos a seguinte resposta ao clicar em follow
+
+{attached: Array(0), detached: Array(1)}
+attached: []
+detached: [1]
+__proto__: Object
+
+
+clicando e novo ela muda
+
+{attached: Array(1), detached: Array(0)}
+attached: [1]
+detached: []
+__proto__: Object
+
+
+agora vamos ver se a relaçao reamente foi criada
+
+php artisan tinker
+
+$user = User::find(1);
+$user->following
+=> Illuminate\Database\Eloquent\Collection {#4143
+     all: [],
+   }
+>>> $user = User::find(4);
+$user->following
+
+=> Illuminate\Database\Eloquent\Collection {#4139
+     all: [
+       App\Profile {#3531
+         id: "1",
+         user_id: "1",
+         title: "d99",
+         description: "mai loko q o batma",
+         url: "http://silkroad.com",
+         image: "profile/joJQpnSZoxVSaHr0qhkyfXAFlDvdvJzsUK0ByDWB.jpg",
+         created_at: "2021-07-13 04:14:55",
+         updated_at: "2021-07-13 04:51:13",
+         pivot: Illuminate\Database\Eloquent\Relations\Pivot {#3995
+           user_id: "4",
+           profile_id: "1",
+         },
+       },
+     ],
+   }
+
+
+   zas zas zas
+
+
+   deu certo
+
+   e se deslicar... muda a parada
+
+   porem da até pra se seguir ainda.....
+
+
+   agora precisamos tirar esses dados q estao sendo gerados a cada clique no follow
+   e mostrar pras pessoas...
+   atravez do botao mudar pra unfollow
+   e tambem refletindo no numero de seguidores.....
+
+
+   no .vue vamos mexer
+   colocar um atributo rapido
+
+   entre mounted e methods
+
+   data: function () {
+      return {
+          status:
+      }
+  },
+
+  status precisa ter um estado padrao.... se o usuario esta ligado ou nao a algum perfil em particular
+  como fazer esse estado inical aparcer???
+  vamos jogar no tag follow button do index.blade.php
+
+<follow-button user-id="{{ $user->id }}" follows="{{ $follows }}"></follow-button>
+                                          ^^^^^^^^^^^^^^^^^^^^^^^^
+a tag follows eu noa entendi se foi inventada....qual q eh... mas o nome tem q bater com esse
+tipo de variavel criada na tag bigote ai...$follows ---> e acho q isso vai ter q vim de dentro do ProfilesController
+
+
+public function index(User $user)
+    {
+
+        $follows = (auth()->user()) ? auth()->user()->following->contains($user->id) : false;    
+        // se o usuario esta logado entao vamos pegar  o following do user logado e ver se contem o user-id do profile...se nao retona false
+        return view('profiles.index', compact('user', 'follows'));
+    }
+
+    ficou assim
+
+
+dai agora a gente pode passar esas parada lá pro .vue
+
+
+<script>
+export default {
+  *********props: ["userId", "follows"],   
+
+  mounted() {
+    console.log("Component mounted.");
+  },
+
+  data: function () {
+      return {
+***********          status: this.follows,
+      }
+  },
+                          
+
+
+
+
+dai deu certo... eh isso.. eh noix
+
+o paranaue voltou ao normal....
+ele tinha dado uns dd pra ver o q saia dess follows.....true or false.... e depois tirou o dd
+
+agr vamos no vue de novo
+
+fazer o toggle do follow pra o botao mudar pra unfollow
+
+<template>
+  <div>
+**********    <button
+**********      class="btn btn-primary ml-4"
+**********      @click="followUser"
+*******************      v-text="buttonText"    ---> colocou isso aki pra trocar o text quando der toggle
+*******************    ></button>     ---->tirou a string
+  </div>
+</template>
+
+<script>
+export default {
+  props: ["userId", "follows"],
+
+  mounted() {
+    console.log("Component mounted.");
+  },
+
+  data: function () {
+    return {
+      status: this.follows,
+    };
+  },
+
+  methods: {
+    followUser() {
+      axios.post("/follow/" + this.userId).then((response) => {
+        console.log(response.data);
+      });
+    },
+  },
+
+******************  computed: {
+******************    buttonText() {                        ------>>>>>essa fita eh o v-text
+******************      return this.status ? "Unfollow" : "Follow";
+******************    },
+******************  },
+};
+</script>
+
+
+
+
+
+dai funciona... mas qunado clica ele nao muda na hora.....tem q dar refresh dai muda 
+
+
+
+methods: {
+    followUser() {
+      axios.post("/follow/" + this.userId).then((response) => {
+        this.status = !this.status; // ele adicionou essa linha.... se a resposta for sucesso..pega o statuss... e !(tóggla) ele
+        console.log(response.data);
+      });
+    },
+
+
+    pronto..arrumou agr instantaneamente!! hehehehe
+
+
+
+agora vamos corrigir aquele erro de quando está logaddo...a parada da treta
+
+erro 500 ...internal server error....
+
+public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+
+    com isso ele mudou o erro pra 401 nao autorizado
+
+    agora vamos pegar isso numa catch block no .vue
+
+
+.catch((errors) => {
+          if (errors.response.status == 401) {
+            //agr asim se der esse erro..ele manda o cara pra pagina de login
+            window.location = "/login";
+          }
+        });
+
+
+pronto..agr se der essa fita... o cara eh redirecionado pra pagina de login!!!
+
+topzera da balada!!
+
+
+agr no index.blade.... vamos arrumar os contadores de seguidores
+
+                <div class="pr-5"><strong>{{ $user->profile->followers->count() }}</strong> followers</div>
+
+assim ele mostra o numero de seguidores...porem nao atualiza na hora depois de clicar no botao
+precisa dar refresh
+
+deve ter q fazer algo parecido com aquele lance de atualizar o estatus
+ele diz q tem q fazer um update nisso ai..mas eh com JavaScript...e esse curso eh de laravel...
+enntao se vira depois bichao!!!
+
+
+agora q acertamos os seguidores....
+vamos fazer tudo de novo pros seguindos....
+
+
+                <div class="pr-5"><strong>{{ $user->following->count() }}</strong> following</div>
+
+basicamente foi mesma fita....
+
+eh q um usa os seguidores do profile...
+o outro ve quem eu sigo
+
+
+agr ta maior dahora!!
+
+cheio de progressoo
+
+agr ele quer dar aula de laravel de verdade!!
+
+vamos falar de varias utilidades q ele tem
+
+bibliutecas
+
+e vamos ver por hora um pouco de documentaçao
+
+*****************LARAVEL TELESCOPE
+
+esse paranauê vai te dar uma noçao por dentro da sua aplicaçao
+e eu muito facil de chamar
+alem de ter uma otima 'UI' ??? ou 'Ai'????
+
+composer require laravel/telescope---->da erro... precisa de uma versao mais antiga
+
+composer require laravel/telescope "2.1.7"
+
+
+
+documentation
+
+
+ou may use Composer to install Telescope into your Laravel project:
+
+composer require laravel/telescope "2.1.7"
+After installing Telescope, publish its assets using the telescope:install Artisan command. After installing Telescope, you should also run the migrate command:
+
+php artisan telescope:install
+
+php artisan migrate
+
+
+
+se der certo ne... vom ver....
+
+depois disso tem q rodar o comando
+
+php artisan telescope:install
+
+
+e depois o 
+
+php artisan migrate ---- >>deu ruim ...dai lancei um php artisan config:cache e depois foi
+
+
+agora se deu tudo certo neh.... da pra ir no chrome e depois de 8000 no localhost
+
+acesse o endereço /telescope
+
+ele abre uma pagina
+
+lah vc monitora tudo q acontece no site....
+
+requests de paginas...
+mostram layouts.... q pagina o php puxou
+
+comandos rodados not erminal...
+logs queries (clica no olhinho no canto q vc ve muitos detalhes das paradas)
+varais fitas
+
+dahora demais.. pra achar erros e tudo mais!
+
+
+parete de email.. cache... uma pooota ferramenta completa e zica pra ver tudo q acontece na sua aplicaçao!!!
+
+
+
+ahora vamos começar com o /home sendo arrumado finalmente!!!
+e tambem fazer a parte dos posts com ordem certa de 'mostragem'
+
+arrumar o home foi facil.... em web.app
+
+estava assimmm
+
+*******Route::get('/', function () {
+*******    return view('welcome');
+*******});
+
+Auth::routes();
+
+Route::post('follow/{user}', 'FollowsController@store');
+
+Route::get('/p/create', 'PostsController@create');
+Route::post('/p', 'PostsController@store');
+Route::get('/p/{post}', 'PostsController@show');
+
+Route::get('/profile/{user}', 'ProfilesController@index')->name('profile.show');
+Route::get('/profile/{user}/edit', 'ProfilesController@edit')->name('profile.edit');
+Route::patch('/profile/{user}', 'ProfilesController@update')->name('profile.update');
+
+
+
+
+depois ficou assim
+
+
+
+Auth::routes();
+
+Route::post('follow/{user}', 'FollowsController@store');
+
+********Route::get('/', 'PostsController@index');
+Route::get('/p/create', 'PostsController@create');
+Route::post('/p', 'PostsController@store');
+Route::get('/p/{post}', 'PostsController@show');
+
+Route::get('/profile/{user}', 'ProfilesController@index')->name('profile.show');
+Route::get('/profile/{user}/edit', 'ProfilesController@edit')->name('profile.edit');
+Route::patch('/profile/{user}', 'ProfilesController@update')->name('profile.update');
+
+
+depois disso..duplicamos show.blade.php na pasta posts.... 
+depois renomeamos para index tambem.... porem dentro de posts.. e nao profile...
+
+lah alteramos um pouco a estrutura....
+colocando tudo dentro de um foreache($posts as post)
+
+
+
+por fim ficou assim
+
+
+@foreach($posts as $post)
+    
+    <div class="row">
+        <div class="col-6 offset-3">
+            <a href="/p/{{ $post->id }}">
+                <img src="/storage/{{ $post->image }}" class="w-100">
+            </a>
+        </div>
+    </div>
+    <div class="row pt-2 pb-4">
+        <div class="col-6 offset-3">
+            <div>
+                
+                <p><span class="font-weight-bold">
+                    <a href="/profile/{{ $post->user->id }}">
+                        <span class="text-dark">{{ $post->user->username }}</span>
+                    </a></span> {{ $post->caption }}
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    @endforeach
+
+
+
+
+    ao clicar no username era um link para o perfeil... ele alterou para q se clicar na foto tbm fosse para o perfil
+
+    mas eu fuçei e mudei.. fiz diferente... em vez de faz isso ai... eu coloquei link direto pro post..
+
+
+    demorou.. mas fucando eu achei...
+
+    na raca quase escrevi certo......so que nao...
+
+
+    teve tbmum lance de ordem dos posts.....
+
+    ele usava antes um tal de orderBy('created_at', 'DESC')
+    --------------->>>>>>>>>>>>>>>mas agr ele usa latest() q eh mesma coisa só q mais limpo e mais rapido!
+    
+isso foi no PostsController alguma hora um pouco antes dos de cima ai....
+
+     public function index()
+    {
+        $users = auth()->user()->following()->pluck('profiles.user_id');   --->> precisa ver o q eh pluck!!!
+
+
+        $posts = Post::whereIn('user_id', $users)->latest()->get();
+
+        return view('posts.index', compact('posts'));
+
+        //dd($posts);
+    }
+
+
+
+
+
+
+
+agora vamos mexer com paginação de posts
+
+
+em PostsController
+
+
+ublic function index()
+    {
+        $users = auth()->user()->following()->pluck('profiles.user_id');
+
+
+ ***********       $posts = Post::whereIn('user_id', $users)->latest()->paginate(5);
+trocou get por paginate()   o numero dentro diz quantosposts por pagina
+        return view('posts.index', compact('posts'));
+
+        //dd($posts);
+    }
+
+
+
+
+agora pra colocar o next button
+em index.blade dentro de posts
+
+depois de @endforeach
+
+<div class="row">
+        <div class="col-12">
+            {{ $posts->links() }}
+        </div>
+    </div>
+
+
+
+    agr uma questao de configurar a classe da div e 
+    colocar um d-flex e colocar no centro com justify-content-center
+
+
+        <div class="col-12 d-flex justify-content-center">
+
+
+
+
+paginaçao com laravel fica level easy!!!!
+
+
+N + 1 problema e soluçao
+
+ao entrar no telescopw... e dar uma olhada em queries agr... vai ter uns erros lah
+
+
+
+Search Tag
+Query	Duration	Happened	
+select * from "users" where "users"."id" = '1' limit 1	0.50ms	49s ago	
+select * from "users" where "users"."id" = '1' limit 1	0.53ms	49s ago	
+select * from "users" where "users"."id" = '1' limit 1	0.51ms	49s ago	
+select * from "users" where "users"."id" = '1' limit 1	0.64ms	49s ago	
+select * from "users" where "users"."id" = '1' limit 1	0.51ms	49s ago	
+
+
+
+
+isso se da pq no index.blade do posts estamos pegando os user relashionships para saber quais usuarios vamos mostrar os posts
+
+
+no entando antes nos nao estamos carregando os users relashionships
+
+entao todavez que ele entra no foreache() ele vai lah e carrega a parada dos users... mas 1 por vez
+
+
+entao no posts controller vc muda isso aki
+
+$posts = Post::whereIn('user_id', $users)->with('user')->latest()->paginate(5);
+                                        ^^^^^^^^^^^^^^^^
+                                    esse user fala do relashionship
+                                    se formos no omdelo de Post tem la uma public function user()
+                                    e eh isso q estaremos carregando
+
+agora com essa linha corrigida...  no telescope vc ve q a gente faz uma unica query...
+dai fica mais rapido seu site"!
+
+depois disso ele vai no terminal...
+
+php artisan telescope:clear
+
+dai voltando pro navegador..
+
+refresh na pagina..depois refresh na pagina do telescope queries....e vc nota q ta tudo certinho com 1 querie so!
+
+
+agr vamos falar sobre cache!!
+
+entrando no perfil do usuario logado
+ele diz q estamos carregando aquela sessao onde tem posts followers e floowing na pagina toda hora que o cara entra
+
+vamos em index.blade.php de profiles agora!!!
+
+div class="d-flex">
+                <div class="pr-5"><strong>{{ $user->posts->count() }}</strong> posts</div>
+                <div class="pr-5"><strong>{{ $user->profile->followers->count() }}</strong> followers</div>
+                <div class="pr-5"><strong>{{ $user->following->count() }}</strong> following</div>
+            </div>
+
+
+            isso tudo vai ser transferido para o controlador!!
+            dai a gente vai usar o caching do laravel
+
+            dai em vez de toda vez a gente carregar a pagina pra ver a fita atualizada
+
+
+            ele vai colocar um contador de 30s para atualizar apenas essa parte da pagina sozinho
+
+
+            public function index(User $user)
+    {
+
+        $follows = (auth()->user()) ? auth()->user()->following->contains($user->id) : false;    
+        // se o usuario esta logado entao vamos pegar  o following do user logado e ver se contem o user-id do profile...se nao retona false
+        
+        $postCount = Cache::remember(
+            'count.posts.' . $user->id, 
+            now()->addSeconds(30),
+            function() use($user) {
+            return $user->posts->count();
+            });
+        $followersCount = Cache::remember(
+            'count.followers.' . $user->id, 
+            now()->addSeconds(30),
+            function() use($user) {
+            return $user->profile->followers->count();
+            });
+        $followingCount = Cache::remember(
+            'count.following.' . $user->id, 
+            now()->addSeconds(30),
+            function() use($user) {
+            return $user->following->count();
+            });
+
+        return view('profiles.index', compact('user', 'follows', 'postCount', 'followersCount', 'followingCount'));
+    }
+
+    por fim fica assim
+    porem lah em cima.. nao pode esquecer de importar a parada do cache!!
+
+
+    use Iluminate\Supoort\Facades\Cache; ----> tem q ter se nao da bosta!!!!
+
+    dai ele faz uns testes de cache q eu nao entende...
+
+    só sei q ele nao fica buscando no banco as coiasa toda hora
+    e isso faz ficar muito muito muito muito mais rapido sua aplicaçao!!!
+
+
+
+    agr vamos mandar emails de confirmaçao do paranaue
+
+
+    
+
+
+
+
