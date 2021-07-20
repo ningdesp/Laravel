@@ -1,0 +1,77 @@
+--->
+---->instalar composer, npm, node-js, phpunit com apt
+
+
+--->
+---->usar composer pra instalar laravel
+
+composer global require laravel/installer
+
+
+--->
+---->dai sempre da bosta pq tem q editar o .bashrc na ~
+
+export PATH=$PATH:~/.config/composer/vendor/bin
+
+pra poder usar o laravel no terminal
+
+
+--->
+---->dai pra escolher a versao do laravel que voce vai usar é esse comando miraculoso
+
+composer create-project --prefer-dist laravel/laravel blog "5.8"
+
+na hora de criar essa porra aí pode dar pau já de cara
+
+In database.php line 58:
+                                                
+  Undefined class constant 'MYSQL_ATTR_SSL_CA'  
+                                                
+
+Script @php artisan package:discover --ansi handling the post-autoload-dump event returned with error code 1
+
+
+alguma coisa na linha 58 do database
+e pra resolver voce abre a pasta config e comenta com // a linha 58
+
+" PDO::MYSQL_ATTR_SSL_CA => env('MYSQL_ATTR_SSL_CA'), "
+
+
+--->
+----> artisan faz milhares de coisas...... ele eh zica do pantano!!!
+
+-->pra gerar um servidor vc usa o comando
+
+php artisan serve
+
+dai vc clica no link e abre o navegador com o index.php
+
+mas pode ser que dê problemas também, então execute os seguintes comandos no caso de:
+
+"RuntimeException No application encryption key has been specified."
+
+
+php artisan key:generate
+php artisan config:cache
+
+pronto!! apareceu a porra do index.php direitinho agora caraleo!!!!!
+
+
+--->
+---->onde voce encontra algo relacionado aos htmls naquele monte de coisa no projeto???
+
+vá em resources/views e abra o welcome.blade.php
+
+--->
+----> blade é alguma coisa q eu ainda não sei
+
+
+--->
+----> NO ENTANTO ELE FAZ MILAGRE!!!!
+
+Criar sessão de autorizaçao como login e register com apenas um comando!!!!!!
+
+php artisan make:auth
+
+TCHARAM!!!!!
+prontinho!!! ele criar tudo e joga no header da pagina!
